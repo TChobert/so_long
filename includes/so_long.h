@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/18 17:58:44 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:37:39 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "libft.h"
 
 // DEFINES //
+
+# define WALL 1
 
 # define BER_SUFFIX ".ber"
 
