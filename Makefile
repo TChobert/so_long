@@ -34,11 +34,21 @@ endif
 
 ## SOURCES ##
 
+SRCS_DIR += map_parser
 SRCS_DIR += tests
 
 # tests #
 
-SRCS += test.c
+#SRCS += test.c
+
+# map parsing #
+
+SRCS += map_parser.c
+SRCS += parser_utils.c
+
+# main #
+
+SRCS += main.c
 
 vpath %.c $(SRCS_DIR)
 
