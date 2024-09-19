@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:41:42 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/19 19:12:55 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:58:50 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,14 @@ char	**build_map_array(int map_file_fd, t_map_data *map_data)
 	return (map_array);
 }
 
+void	close_and_free_routine(int map_fd, char **map_array)
+{
+	if (map_fd > 0)
+		close(map_fd);
+	if (map_array != NULL)
+		ft_free_and_null(map_array);
+}
+
 t_map_status	map_parsing(const char *map_file_path)
 {
 	char		**map_array;
@@ -71,12 +79,10 @@ t_map_status	map_parsing(const char *map_file_path)
 	int			map_fd;
 
 	ft_bzero(&map_data, sizeof(map_data));
+	map_array = NULL;
 	if (open_map_file(map_file_path, &map_fd) == OPENING_ERROR)
 	{
-		if (map_fd < 0)
-		{
-			close(map_fd);
-		}
+		close_and_free_routine(map_fd, map_array);
 		return (INVALID_MAP);
 	}
 	map_array = build_map_array(map_fd, &map_data);
@@ -87,15 +93,6 @@ t_map_status	map_parsing(const char *map_file_path)
 		ft_free_and_null(map_array);
 	 	return (INVALID_MAP);
 	}
-	//size_t	i = 0;
-	// while (map_array[i] != NULL)
-	// {
-	// 	ft_putstr_fd(map_array[i], STDOUT_FILENO);
-	// 	write(1, "\n", 1);
-	// 	++i;
-	// }
-	ft_free_and_null(map_array);
-	//printf("%zu\n", map_data.map_lines_number);
-	close(map_fd);
+	close_and_free_routine(map_fd, map_array);
 	return (VALID_MAP);
 }

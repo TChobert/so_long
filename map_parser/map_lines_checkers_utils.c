@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:35:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/19 19:42:55 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:52:57 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	is_surrounded_by_walls(const char *line, t_map_data *map_data)
 
 void	add_line_data(const char *line, t_map_data *map_data)
 {
-	map_data->items_values.collectibles_number = count_collectibles_items(line);
-	map_data->items_values.player_number = count_player_items(line);
-	map_data->items_values.exit_number = count_exit_items(line);
+	map_data->items_values.collectibles_number += count_collectibles_items(line);
+	map_data->items_values.player_number += count_player_items(line);
+	map_data->items_values.exit_number += count_exit_items(line);
 }

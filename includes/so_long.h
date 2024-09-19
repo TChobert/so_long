@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/19 19:46:40 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:50:57 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@
 
 typedef enum	e_items_types
 {
-	PLAYER_ITEM,
-	COLLECTIBLE_ITEM,
-	WALL_ITEM,
-	EXIT_ITEM
+	PLAYER_ITEM = 'P',
+	COLLECTIBLE_ITEM = 'C',
+	WALL_ITEM = '1',
+	EXIT_ITEM = 'E'
 }				t_items_types;
 
 typedef enum	e_opening_status
@@ -81,6 +81,7 @@ typedef struct	s_map_data
 // PARSING
 
 void				display_opening_errors(const char *map_file_path);
+t_map_status		check_map_items_values(t_map_data *map_data);
 t_map_status		map_parsing(const char *map_file_path);
 t_opening_status	check_map_file_type(const char *map_file_path);
 t_map_status		map_array_lines_controls(char **map_array,
@@ -97,5 +98,7 @@ void				add_line_data(const char *line, t_map_data *map_data);
 bool				is_full_wall(const char *line);
 bool				is_correct_size(const char *line, t_map_data *map_data);
 bool				is_surrounded_by_walls(const char *line, t_map_data *map_data);
+
+void	close_and_free_routine(int map_fd, char **map_array);
 
 # endif

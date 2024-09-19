@@ -44,8 +44,8 @@ SRCS_DIR += tests
 # map parsing #
 
 SRCS += map_parser.c
-SRCS += parser_utils.c
-SRCS += basic_map_controls.c
+SRCS += check_map_file_type.c
+SRCS += map_array_lines_controls.c
 SRCS += map_lines_checkers.c
 SRCS += map_lines_checkers_utils.c
 SRCS += items_counters.c
