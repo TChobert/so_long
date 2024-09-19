@@ -45,6 +45,7 @@ SRCS_DIR += tests
 
 SRCS += map_parser.c
 SRCS += parser_utils.c
+SRCS += errors_displaying.c
 
 # main #
 

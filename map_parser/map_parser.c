@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:41:42 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/18 19:55:47 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:24:11 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,40 @@ static t_opening_status	open_map_file(const char *map_file_path, int *map_fd)
 	}
 	return (OPENING_SUCCESS);
 }
+char	*build_map_line(int map_file_fd)
+{
+	char	*map_line;
+	char	*line;
+	char	*temp_map_line;
+
+	map_line = ft_strdup("");
+	if (map_line == NULL)
+		return (NULL);
+	line = get_next_line(map_file_fd);
+	while (line  != NULL)
+	{
+		temp_map_line = map_line;
+		ft_asprintf(&map_line, "%s%s", map_line, line);
+		free(line);
+		line = get_next_line(map_file_fd);
+		free(temp_map_line);
+	}
+	free(line);
+	//test read
+	return (map_line);
+}
 
 char	**build_map_array(int map_file_fd)
 {
 	char 	**map_array;
-	char	*full_file_line;
-	char	*line;
+	char	*map_line;
 
-	full_file_line = ft_strdup("");
-	line = get_next_line(map_file_fd);
-	while (line  != NULL)
-	{
-		ft_asprintf(&full_file_line, "%s%s", full_file_line, line);
-		free(line);
-		line = get_next_line(map_file_fd);
-	}
-	free(line);
-	//test read
-	free(full_file_line);
+	map_line = build_map_line(map_file_fd);
+	if (map_line == NULL)
+		return (NULL);
+	map_array = ft_split(map_line, '\n');
+	free(map_line);
+	return (map_array);
 }
 
 t_map_status	map_parsing(const char *map_file_path)
@@ -65,9 +81,16 @@ t_map_status	map_parsing(const char *map_file_path)
 	map_array = build_map_array(map_fd);
 	if (map_array == NULL)
 		return (EXIT_FAILURE); //ERREUR A DEFINIR
-	// if (map_basic_controls(map_fd) == INVALID_MAP)
+	//if (map_basic_controls() == INVALID_MAP)
 	// 	return (INVALID_MAP);
-	if (map_fd > 0)
-		close(map_fd);
+	size_t	i = 0;
+	while (map_array[i] != NULL)
+	{
+		ft_putstr_fd(map_array[i], STDOUT_FILENO);
+		write(1, "\n", 1);
+		++i;
+	}
+	ft_free_and_null(map_array);
+	close(map_fd);
 	return (VALID_MAP);
 }
