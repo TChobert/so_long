@@ -12,43 +12,6 @@
 
 #include "so_long.h"
 
-char	*build_map_line(int map_file_fd, t_map_data *map_data)
-{
-	char	*map_line;
-	char	*line;
-	char	*temp_map_line;
-
-	map_line = ft_strdup("");
-	if (map_line == NULL)
-		return (NULL);
-	line = get_next_line(map_file_fd);
-	while (line  != NULL)
-	{
-		temp_map_line = map_line;
-		ft_asprintf(&map_line, "%s%s", map_line, line);
-		free(line);
-		line = get_next_line(map_file_fd);
-		map_data->map_lines_number += 1;
-		free(temp_map_line);
-	}
-	free(line);
-	//test read
-	return (map_line);
-}
-
-char	**build_map_array(int map_file_fd, t_map_data *map_data)
-{
-	char 	**map_array;
-	char	*map_line;
-
-	map_line = build_map_line(map_file_fd, map_data);
-	if (map_line == NULL)
-		return (NULL);
-	map_array = ft_split(map_line, '\n');
-	free(map_line);
-	return (map_array);
-}
-
 void	display_array(char **array)
 {
 	size_t	i;
