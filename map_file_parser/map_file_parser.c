@@ -25,7 +25,7 @@ void	display_array(char **array)
 	}
 }
 
-t_map_status	map_parsing(const char *map_file_path)
+t_map_status	map_file_parser(const char *map_file_path)
 {
 	char		**map_array;
 	t_map_data	map_data;

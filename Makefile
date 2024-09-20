@@ -34,7 +34,7 @@ endif
 
 ## SOURCES ##
 
-SRCS_DIR += map_parser
+SRCS_DIR += map_file_parser
 SRCS_DIR += tests
 
 # tests #
@@ -44,7 +44,7 @@ SRCS_DIR += tests
 # map parsing #
 
 SRCS += open_map_file.c
-SRCS += map_parser.c
+SRCS += map_file_parser.c
 SRCS += check_map_file_type.c
 SRCS += build_map_array.c
 SRCS += map_array_lines_controls.c
