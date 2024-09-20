@@ -6,22 +6,12 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:41:42 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/20 15:41:11 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:15:00tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static t_opening_status	open_map_file(const char *map_file_path, int *map_fd)
-{
-	*map_fd = open(map_file_path, O_RDONLY);
-	if (*map_fd < 0)
-	{
-		display_opening_errors(map_file_path);
-		return (OPENING_ERROR);
-	}
-	return (OPENING_SUCCESS);
-}
 char	*build_map_line(int map_file_fd, t_map_data *map_data)
 {
 	char	*map_line;
@@ -59,12 +49,17 @@ char	**build_map_array(int map_file_fd, t_map_data *map_data)
 	return (map_array);
 }
 
-void	close_and_free_routine(int map_fd, char **map_array)
+void	display_array(char **array)
 {
-	if (map_fd > 0)
-		close(map_fd);
-	if (map_array != NULL)
-		ft_free_and_null(map_array);
+	size_t	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		ft_putstr_fd(array[i], STDOUT_FILENO);
+		write(1, "\n", 1);
+		++i;
+	}
 }
 
 t_map_status	map_parsing(const char *map_file_path)

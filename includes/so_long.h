@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/20 15:15:29 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:43:42 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct	s_map_data
 
 // PARSING
 
+t_opening_status	open_map_file(const char *map_file_path, int *map_fd);
 void				display_opening_errors(const char *map_file_path);
 t_map_status		check_map_items_values(t_map_data *map_data);
 t_map_status		map_parsing(const char *map_file_path);
