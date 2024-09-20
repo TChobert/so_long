@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:35:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/19 20:52:57 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:29:09 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ bool	is_correct_size(const char *line, t_map_data *map_data)
 bool	is_surrounded_by_walls(const char *line, t_map_data *map_data)
 {
 	return ((line[0] == WALL) && (line[map_data->first_line_size - 1] == WALL));
+}
+
+t_map_line_status	check_line_items(const char *line)
+{
+	size_t	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (ft_strchr(ITEM_STR, line[i]) == NULL)
+			return (INVALID_LINE);
+		++i;
+	}
+	return (VALID_LINE);
 }
 
 void	add_line_data(const char *line, t_map_data *map_data)

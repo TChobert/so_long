@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/19 20:50:57 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:15:29 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_map_line_status	check_first_line(const char *first_line,
 						t_map_data *map_data);
 t_map_line_status	check_last_line(const char *last_line, t_map_data *map_data);
 t_map_line_status	check_line(const char *line, t_map_data *map_data);
+t_map_line_status	check_line_items(const char *line);
 unsigned int		count_collectibles_items(const char *line);
 unsigned int		count_player_items(const char *line);
 unsigned int		count_exit_items(const char *line);
@@ -99,6 +100,6 @@ bool				is_full_wall(const char *line);
 bool				is_correct_size(const char *line, t_map_data *map_data);
 bool				is_surrounded_by_walls(const char *line, t_map_data *map_data);
 
-void	close_and_free_routine(int map_fd, char **map_array);
+void				close_and_free_routine(int map_fd, char **map_array);
 
 # endif

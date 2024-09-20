@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:41:42 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/19 20:58:50 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:41:11 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 static t_opening_status	open_map_file(const char *map_file_path, int *map_fd)
 {
-	if (check_map_file_type(map_file_path) == INVALID_FILE_TYPE)
-	{
-		ft_dprintf(STDERR_FILENO, "Error\nInvalid map file type. Please enter '%s' file\n", BER_SUFFIX);
-		return (OPENING_ERROR);
-	}
 	*map_fd = open(map_file_path, O_RDONLY);
 	if (*map_fd < 0)
 	{
@@ -80,6 +75,8 @@ t_map_status	map_parsing(const char *map_file_path)
 
 	ft_bzero(&map_data, sizeof(map_data));
 	map_array = NULL;
+	if (check_map_file_type(map_file_path) == INVALID_FILE_TYPE)
+		return (INVALID_MAP);
 	if (open_map_file(map_file_path, &map_fd) == OPENING_ERROR)
 	{
 		close_and_free_routine(map_fd, map_array);
