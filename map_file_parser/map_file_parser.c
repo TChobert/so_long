@@ -39,10 +39,9 @@ t_map_status	map_file_parser(const char *map_file_path, t_game_data *game_data)
 	game_data->current_map_data.map_array = build_map_array(map_fd, game_data);
 	if (game_data->current_map_data.map_array == NULL)
 		return (EXIT_FAILURE); //ERREUR A DEFINIR
-	if (map_array_lines_controls(game_data) == INVALID_MAP)
-			//|| flood_fill(game_data) == INVALID_MAP)
+	if (map_array_lines_controls(game_data) == INVALID_MAP) // || launch_flood_fill(*game_data) == INVALID_MAP)
 	{
-		ft_free_and_null(game_data->current_map_data.map_array);
+		close_and_free_routine(map_fd, game_data);
 	 	return (INVALID_MAP);
 	}
 	close_and_free_routine(map_fd, game_data);

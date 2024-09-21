@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:16:02 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 16:00:24 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:17:04 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_map_status	check_map_items_values(t_game_data *game_data)
 
 t_map_status	map_array_lines_controls(t_game_data *game_data)
 {
-	size_t	i;
 	const size_t rows = game_data->current_map_data.map_rows_number;
+	size_t	i;
 
 	i = 1;
 	if (check_first_line(game_data->current_map_data.map_array[0], game_data) == INVALID_LINE)
@@ -40,7 +40,6 @@ t_map_status	map_array_lines_controls(t_game_data *game_data)
 		}
 		++i;
 	}
-	printf("last line = %zu\n", game_data->current_map_data.map_rows_number);
 	if (check_last_line(game_data->current_map_data.map_array[i], game_data) == INVALID_LINE)
 		return (INVALID_MAP);
 	return (check_map_items_values(game_data));

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 14:14:09 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:41:11 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,15 @@ typedef struct	s_map_data
 
 }				t_map_data;
 
+typedef struct	s_player_data
+{
+	int		player_starting_coord[2];
+}				t_player_data;
+
 typedef struct	s_game_data
 {
-	t_map_data	current_map_data;
+	t_map_data		current_map_data;
+	t_player_data	current_player_data;
 
 }				t_game_data;
 
@@ -108,7 +114,15 @@ void				add_line_data(const char *line, t_game_data *game_data);
 bool				is_full_wall(const char *line);
 bool				is_correct_size(const char *line, t_game_data *game_data);
 bool				is_surrounded_by_walls(const char *line, t_game_data *game_data);
+t_map_status		launch_flood_fill(t_game_data game_data);
+int					flood_fill(t_game_data game_data, char **duplicated_map, size_t x, size_t y);
+void				get_player_starting_position(char **duplicated_map, size_t *player_coords);
+
+char				**duplicate_map_array(t_game_data game_data);
 
 void				close_and_free_routine(int map_fd, t_game_data *game_data);
+void				fill_new_array(t_game_data game_data, char **new_array);
+
+void				display_array(char **array);
 
 # endif
