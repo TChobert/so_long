@@ -6,13 +6,13 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:55:08 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/20 17:56:32 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:00:31 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*build_map_line(int map_file_fd, t_map_data *map_data)
+static char	*build_map_line(int map_file_fd, t_game_data *game_data)
 {
 	char	*map_line;
 	char	*line;
@@ -28,7 +28,7 @@ static char	*build_map_line(int map_file_fd, t_map_data *map_data)
 		ft_asprintf(&map_line, "%s%s", map_line, line);
 		free(line);
 		line = get_next_line(map_file_fd);
-		map_data->map_lines_number += 1;
+		game_data->current_map_data.map_rows_number += 1;
 		free(temp_map_line);
 	}
 	free(line);
@@ -36,12 +36,12 @@ static char	*build_map_line(int map_file_fd, t_map_data *map_data)
 	return (map_line);
 }
 
-char	**build_map_array(int map_file_fd, t_map_data *map_data)
+char	**build_map_array(int map_file_fd, t_game_data *game_data)
 {
 	char 	**map_array;
 	char	*map_line;
 
-	map_line = build_map_line(map_file_fd, map_data);
+	map_line = build_map_line(map_file_fd, game_data);
 	if (map_line == NULL)
 		return (NULL);
 	map_array = ft_split(map_line, '\n');

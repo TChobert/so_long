@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:35:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/20 14:29:09 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:53:56 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ bool	is_full_wall(const char *line)
 	return (true);
 }
 
-bool	is_correct_size(const char *line, t_map_data *map_data)
+bool	is_correct_size(const char *line, t_game_data *game_data)
 {
 	const size_t	line_size = get_line_size(line);
 
-	return (line_size == map_data->first_line_size);
+	return (line_size == game_data->current_map_data.map_rows_number);
 }
 
-bool	is_surrounded_by_walls(const char *line, t_map_data *map_data)
+bool	is_surrounded_by_walls(const char *line, t_game_data *game_data)
 {
-	return ((line[0] == WALL) && (line[map_data->first_line_size - 1] == WALL));
+	return ((line[0] == WALL) && (line[game_data->current_map_data.map_rows_number - 1] == WALL));
 }
 
 t_map_line_status	check_line_items(const char *line)
@@ -59,9 +59,9 @@ t_map_line_status	check_line_items(const char *line)
 	return (VALID_LINE);
 }
 
-void	add_line_data(const char *line, t_map_data *map_data)
+void	add_line_data(const char *line, t_game_data *game_data)
 {
-	map_data->items_values.collectibles_number += count_collectibles_items(line);
-	map_data->items_values.player_number += count_player_items(line);
-	map_data->items_values.exit_number += count_exit_items(line);
+	game_data->current_map_data.items_values.collectibles_number += count_collectibles_items(line);
+	game_data->current_map_data.items_values.player_number += count_player_items(line);
+	game_data->current_map_data.items_values.exit_number += count_exit_items(line);
 }

@@ -25,29 +25,26 @@ void	display_array(char **array)
 	}
 }
 
-t_map_status	map_file_parser(const char *map_file_path)
+t_map_status	map_file_parser(const char *map_file_path, t_game_data *game_data)
 {
-	char		**map_array;
-	t_map_data	map_data;
 	int			map_fd;
 
-	ft_bzero(&map_data, sizeof(map_data));
-	map_array = NULL;
 	if (check_map_file_type(map_file_path) == INVALID_FILE_TYPE)
 		return (INVALID_MAP);
 	if (open_map_file(map_file_path, &map_fd) == OPENING_ERROR)
 	{
-		close_and_free_routine(map_fd, map_array);
+		close_and_free_routine(map_fd, game_data);
 		return (INVALID_MAP);
 	}
-	map_array = build_map_array(map_fd, &map_data);
-	if (map_array == NULL)
+	game_data->current_map_data.map_array = build_map_array(map_fd, game_data);
+	if (game_data->current_map_data.map_array == NULL)
 		return (EXIT_FAILURE); //ERREUR A DEFINIR
-	if (map_array_lines_controls(map_array, &map_data) == INVALID_MAP)
+	if (map_array_lines_controls(game_data) == INVALID_MAP)
+			//|| flood_fill(game_data) == INVALID_MAP)
 	{
-		ft_free_and_null(map_array);
+		ft_free_and_null(game_data->current_map_data.map_array);
 	 	return (INVALID_MAP);
 	}
-	close_and_free_routine(map_fd, map_array);
+	close_and_free_routine(map_fd, game_data);
 	return (VALID_MAP);
 }
