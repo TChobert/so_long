@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 19:59:21 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:52:02 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int flood_fill(t_game_data *game_data, char **duplicated_map, size_t x, size_t y
 	if (flood_fill(game_data, duplicated_map, x, y - 1) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 
-	duplicated_map[x][y] = '0';
+	//duplicated_map[x][y] = '0';
 	return (EXIT_FAILURE);
 }
 
@@ -66,7 +66,7 @@ void	get_player_starting_position(char **map_array, size_t *player_coords)
 			{
 				player_coords[0] = x;
 				player_coords[1] = y;
-				printf("x = %zu, y = %zu\n", x, y);
+				//printf("x = %zu, y = %zu\n", x, y);
 				return ;
 			}
 			++y;
@@ -136,8 +136,8 @@ t_map_status	launch_flood_fill(t_game_data game_data)
 	if (flood_fill(&game_data, duplicated_map, player_coords[0],
 			player_coords[1]) == EXIT_FAILURE)
 	{
-		printf("row %zu\n", game_data.current_map_data.map_rows_number);
-		printf("col %zu\n", game_data.current_map_data.map_columns_number);
+		//printf("row %zu\n", game_data.current_map_data.map_rows_number);
+		//printf("col %zu\n", game_data.current_map_data.map_columns_number);
 		ft_free_and_null(duplicated_map);
 		return (ft_putendl_fd("1", 2), INVALID_MAP);
 	}
