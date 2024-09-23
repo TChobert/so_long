@@ -6,13 +6,14 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 18:54:47 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:01:46 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	flood_fill_recursive(t_game_data *game_data, char **duplicated_map, size_t x, size_t y)
+static int	flood_fill_recursive_calls(t_game_data *game_data,
+				char **duplicated_map, size_t x, size_t y)
 {
 	if (flood_fill(game_data, duplicated_map, x + 1, y) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
@@ -47,7 +48,7 @@ int flood_fill(t_game_data *game_data, char **duplicated_map,
 	if ((game_data->current_map_data.items_values.exit_number == 0)
 		&& (game_data->current_map_data.items_values.collectibles_number == 0))
 		return (EXIT_SUCCESS);
-	return (flood_fill_recursive(game_data, duplicated_map, x, y));
+	return (flood_fill_recursive_calls(game_data, duplicated_map, x, y));
 }
 
 t_map_status	launch_flood_fill(t_game_data game_data)
