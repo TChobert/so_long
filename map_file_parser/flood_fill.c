@@ -6,13 +6,26 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 17:38:20 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:54:47 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int flood_fill(t_game_data *game_data, char **duplicated_map,
+static int	flood_fill_recursive(t_game_data *game_data, char **duplicated_map, size_t x, size_t y)
+{
+	if (flood_fill(game_data, duplicated_map, x + 1, y) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	if (flood_fill(game_data, duplicated_map, x - 1, y) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	if (flood_fill(game_data, duplicated_map, x, y + 1) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	if (flood_fill(game_data, duplicated_map, x, y - 1) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
+int flood_fill(t_game_data *game_data, char **duplicated_map,
 						size_t x, size_t y)
 {
 	if (x < 0 || x >= game_data->current_map_data.map_rows_number || y < 0
@@ -33,40 +46,8 @@ static int flood_fill(t_game_data *game_data, char **duplicated_map,
 	duplicated_map[x][y] = 'V';
 	if ((game_data->current_map_data.items_values.exit_number == 0)
 		&& (game_data->current_map_data.items_values.collectibles_number == 0))
-		return EXIT_SUCCESS;
-	if (flood_fill(game_data, duplicated_map, x + 1, y) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
-	if (flood_fill(game_data, duplicated_map, x - 1, y) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	if (flood_fill(game_data, duplicated_map, x, y + 1) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	if (flood_fill(game_data, duplicated_map, x, y - 1) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	return (EXIT_FAILURE);
-}
-
-static void	get_player_starting_position(char **map_array, size_t *player_coords)
-{
-	size_t	x;
-	size_t	y;
-
-	x = 0;
-	while(map_array[x] != NULL)
-	{
-		y = 0;
-		while (map_array[x][y] != '\0')
-		{
-			if (map_array[x][y] == 'P')
-			{
-				player_coords[0] = x;
-				player_coords[1] = y;
-				return ;
-			}
-			++y;
-		}
-		++x;
-	}
-	return ;
+	return (flood_fill_recursive(game_data, duplicated_map, x, y));
 }
 
 t_map_status	launch_flood_fill(t_game_data game_data)

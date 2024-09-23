@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 16:41:33 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:56:55 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ bool				is_full_wall(const char *line);
 bool				is_correct_size(const char *line, t_game_data *game_data);
 bool				is_surrounded_by_walls(const char *line, t_game_data *game_data);
 t_map_status		launch_flood_fill(t_game_data game_data);
+int 				flood_fill(t_game_data *game_data, char **duplicated_map, size_t x, size_t y);
 char				**duplicate_map_array(t_game_data game_data);
+void				get_player_starting_position(char **map_array, size_t *player_coords);
 void				close_and_free_routine(int map_fd, t_game_data *game_data);
 
 # endif

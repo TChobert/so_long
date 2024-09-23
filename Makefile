@@ -55,6 +55,7 @@ SRCS += errors_displaying.c
 SRCS += flood_fill.c
 SRCS += add_line_data.c
 SRCS += duplicate_map_array.c
+SRCS += get_player_starting_position.c
 SRCS += close_and_free_routine.c
 
 

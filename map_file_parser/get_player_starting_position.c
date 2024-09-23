@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_player_starting_position.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 13:38:44 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 17:47:53 by tchobert         ###   ########.fr       */
+/*   Created: 2024/09/23 18:54:24 by tchobert          #+#    #+#             */
+/*   Updated: 2024/09/23 18:54:55 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	get_player_starting_position(char **map_array, size_t *player_coords)
 {
-	t_game_data	game_data;
+	size_t	x;
+	size_t	y;
 
-	ft_bzero(&game_data, sizeof(game_data));
-	if (ac != 2 || av[1] == NULL)
+	x = 0;
+	while(map_array[x] != NULL)
 	{
-		ft_dprintf(STDERR_FILENO, "Error\nPlease enter a map file.\n");
-		return (EXIT_FAILURE);
+		y = 0;
+		while (map_array[x][y] != '\0')
+		{
+			if (map_array[x][y] == 'P')
+			{
+				player_coords[0] = x;
+				player_coords[1] = y;
+				return ;
+			}
+			++y;
+		}
+		++x;
 	}
-	if (map_file_parser(av[1], &game_data) == INVALID_MAP)
-	{
-		ft_dprintf(STDERR_FILENO, "%s is not a correct map\n", av[1]);
-		return (EXIT_FAILURE);
-	}
-	ft_printf("%s is a correct map !\n", av[1]);
-	return (EXIT_SUCCESS);
+	return ;
 }
