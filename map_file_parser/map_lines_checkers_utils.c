@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:35:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 19:33:41 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:36:47 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,4 @@ t_map_line_status	check_line_items(const char *line)
 		++i;
 	}
 	return (VALID_LINE);
-}
-
-void	add_line_data(const char *line, t_game_data *game_data)
-{
-	game_data->current_map_data.items_values.collectibles_number += count_collectibles_items(line);
-	game_data->current_map_data.items_values.player_number += count_player_items(line);
-	game_data->current_map_data.items_values.exit_number += count_exit_items(line);
 }

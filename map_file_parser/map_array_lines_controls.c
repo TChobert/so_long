@@ -6,13 +6,13 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:16:02 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 20:43:11 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:35:56 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_map_status	check_map_items_values(t_game_data *game_data)
+static t_map_status	check_map_items_values(t_game_data *game_data)
 {
 	if (game_data->current_map_data.items_values.collectibles_number < 1)
 		return (INVALID_MAP);

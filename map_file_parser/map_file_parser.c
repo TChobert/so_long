@@ -12,20 +12,8 @@
 
 #include "so_long.h"
 
-void	display_array(char **array)
-{
-	size_t	i;
-
-	i = 0;
-	while (array[i] != NULL)
-	{
-		ft_putstr_fd(array[i], STDOUT_FILENO);
-		write(1, "\n", 1);
-		++i;
-	}
-}
-
-t_map_status	map_file_parser(const char *map_file_path, t_game_data *game_data)
+t_map_status	map_file_parser(const char *map_file_path,
+									t_game_data *game_data)
 {
 	int			map_fd;
 
@@ -41,7 +29,9 @@ t_map_status	map_file_parser(const char *map_file_path, t_game_data *game_data)
 	{
 		close_and_free_routine(map_fd, game_data);
 		return (EXIT_FAILURE);
-	if (map_array_lines_controls(game_data) == INVALID_MAP || launch_flood_fill(*game_data) == INVALID_MAP)
+	}
+	if (map_array_lines_controls(game_data) == INVALID_MAP
+			|| launch_flood_fill(*game_data) == INVALID_MAP)
 	{
 		close_and_free_routine(map_fd, game_data);
 	 	return (INVALID_MAP);

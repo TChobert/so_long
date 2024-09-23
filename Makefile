@@ -53,6 +53,8 @@ SRCS += map_lines_checkers_utils.c
 SRCS += items_counters.c
 SRCS += errors_displaying.c
 SRCS += flood_fill.c
+SRCS += add_line_data.c
+SRCS += duplicate_map_array.c
 SRCS += close_and_free_routine.c
 
 

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 20:00:00 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:41:33 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct	s_game_data
 
 t_opening_status	open_map_file(const char *map_file_path, int *map_fd);
 void				display_opening_errors(const char *map_file_path);
-t_map_status		check_map_items_values(t_game_data *game_data);
 t_map_status		map_file_parser(const char *map_file_path, t_game_data *game_data);
 t_opening_status	check_map_file_type(const char *map_file_path);
 char				**build_map_array(int map_file_fd, t_game_data *game_data);
@@ -115,14 +114,7 @@ bool				is_full_wall(const char *line);
 bool				is_correct_size(const char *line, t_game_data *game_data);
 bool				is_surrounded_by_walls(const char *line, t_game_data *game_data);
 t_map_status		launch_flood_fill(t_game_data game_data);
-int					flood_fill(t_game_data *game_data, char **duplicated_map, size_t x, size_t y);
-void				get_player_starting_position(char **duplicated_map, size_t *player_coords);
-
 char				**duplicate_map_array(t_game_data game_data);
-
 void				close_and_free_routine(int map_fd, t_game_data *game_data);
-void				fill_new_array(t_game_data game_data, char **new_array);
-
-void				display_array(char **array);
 
 # endif
