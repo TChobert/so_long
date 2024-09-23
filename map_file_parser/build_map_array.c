@@ -6,11 +6,30 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:55:08 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 15:00:31 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:37:05 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	free_routine(char *map_line, char *line, char *temp_map_line)
+{
+	if (map_line != NULL)
+	{
+		free(map_line);
+		map_line = NULL;
+	}
+	if (line != NULL)
+	{
+		free(line);
+		line = NULL;
+	}
+	if (temp_map_line != NULL)
+	{
+		free(temp_map_line);
+		temp_map_line = NULL;
+	}
+}
 
 static char	*build_map_line(int map_file_fd, t_game_data *game_data)
 {
@@ -20,19 +39,22 @@ static char	*build_map_line(int map_file_fd, t_game_data *game_data)
 
 	map_line = ft_strdup("");
 	if (map_line == NULL)
-		return (NULL);
+	return (NULL);
 	line = get_next_line(map_file_fd);
 	while (line  != NULL)
 	{
 		temp_map_line = map_line;
-		ft_asprintf(&map_line, "%s%s", map_line, line);
+		if (ft_asprintf(&map_line, "%s%s", map_line, line) == -1)
+		{
+			free_routine(map_line, line, temp_map_line);
+			return (NULL);
+		}
 		free(line);
 		line = get_next_line(map_file_fd);
 		game_data->current_map_data.map_rows_number += 1;
 		free(temp_map_line);
 	}
 	free(line);
-	//test read
 	return (map_line);
 }
 

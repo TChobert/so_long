@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 16:35:32 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:38:20 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_map_status	launch_flood_fill(t_game_data game_data)
 	if (duplicated_map == NULL)
 	{
 		return (INVALID_MAP);
-		//printerror
+		//perror();
 	}
 	get_player_starting_position(duplicated_map, player_coords);
 	if (flood_fill(&game_data, duplicated_map, player_coords[0],
