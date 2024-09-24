@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 18:56:55 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:21:41 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,16 @@ typedef struct	s_map_data
 
 }				t_map_data;
 
-typedef struct	s_player_data
+typedef struct	s_character_data
 {
-	int		player_starting_coord[2];
-}				t_player_data;
+	int		character_starting_coord[2];
+	int		character_current_coord[2];
+}				t_character_data;
 
 typedef struct	s_game_data
 {
 	t_map_data		current_map_data;
-	t_player_data	current_player_data;
+	t_character_data	current_character_data;
 
 }				t_game_data;
 

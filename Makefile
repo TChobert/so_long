@@ -11,6 +11,22 @@ LIBFT := $(LIBFT_DIR)/libft.a
 LIBFT_INCLUDES_DIR := $(LIBFT_DIR)/includes
 LIBFT_HEADER := $(LIBFT_INCLUDES_DIR)/libft.h
 
+## MLX ##
+
+MLX_DIR = ./minilibx-linux
+MLX = $(MLX_DIR)/libmlx_Linux.a
+MLX_INCLUDES_DIR = $(MLX_DIR)
+MLX_HEADER = $(MLX_INCLUDES_DIR)/mlx.h
+
+## MLX_LINKS ##
+
+MLX_LINKS += -L/usr/lib
+MLX_LINKS += -lXext
+MLX_LINKS += -lX11
+MLX_LINKS += -lm
+MLX_LINKS += -lz
+#MLX_LINKS += -lbsd
+
 ## COMPILATION ##
 
 CC := cc
@@ -35,11 +51,7 @@ endif
 ## SOURCES ##
 
 SRCS_DIR += map_file_parser
-SRCS_DIR += tests
-
-# tests #
-
-#SRCS += test.c
+SRCS_DIR += game
 
 # map parsing #
 
@@ -57,6 +69,9 @@ SRCS += add_line_data.c
 SRCS += duplicate_map_array.c
 SRCS += get_player_starting_position.c
 SRCS += close_and_free_routine.c
+
+# game #
+
 
 
 # main #
@@ -82,16 +97,19 @@ OBJS := $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 ##### RULES #####
 
-all : $(LIBFT) $(NAME)
+all : $(LIBFT) $(MLX) $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(INCLUDES_DIR) $(OBJS) $(LIBFT) -o $@
+	$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) $(OBJS) $(LIBFT) $(MLX) -o $@
 
 $(OBJS): $(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(INCLUDES_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(OBJS_DIR):
 	mkdir $@
@@ -99,6 +117,7 @@ $(OBJS_DIR):
 clean:
 	$(RM) -R $(OBJS_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)

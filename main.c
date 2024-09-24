@@ -6,27 +6,34 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:38:44 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 17:47:53 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:43:46 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+int	so_long(char *map)
 {
 	t_game_data	game_data;
 
 	ft_bzero(&game_data, sizeof(game_data));
+	if (map_file_parser(map, &game_data) == INVALID_MAP)
+	{
+		ft_dprintf(STDERR_FILENO, "%s is not a correct map\n", map);
+		return (EXIT_FAILURE);
+	}
+	ft_printf("%s is a correct map !\n", map);
+	//if (launch_game(&game_data) == EXIT_FAILURE);
+		//return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int	main(int ac, char **av)
+{
 	if (ac != 2 || av[1] == NULL)
 	{
 		ft_dprintf(STDERR_FILENO, "Error\nPlease enter a map file.\n");
 		return (EXIT_FAILURE);
 	}
-	if (map_file_parser(av[1], &game_data) == INVALID_MAP)
-	{
-		ft_dprintf(STDERR_FILENO, "%s is not a correct map\n", av[1]);
-		return (EXIT_FAILURE);
-	}
-	ft_printf("%s is a correct map !\n", av[1]);
-	return (EXIT_SUCCESS);
+	return (so_long(av[1]));
 }
