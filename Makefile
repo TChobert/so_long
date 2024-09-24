@@ -72,7 +72,7 @@ SRCS += close_and_free_routine.c
 
 # game #
 
-
+SRCS += game_launcher.c
 
 # main #
 

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/24 14:21:41 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:54:51 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/stat.h>
 # include <errno.h>
 
+# include "mlx.h"
 # include "libft.h"
 
 // DEFINES //
@@ -85,7 +86,7 @@ typedef struct	s_character_data
 
 typedef struct	s_game_data
 {
-	t_map_data		current_map_data;
+	t_map_data			current_map_data;
 	t_character_data	current_character_data;
 
 }				t_game_data;
@@ -117,7 +118,11 @@ bool				is_surrounded_by_walls(const char *line, t_game_data *game_data);
 t_map_status		launch_flood_fill(t_game_data game_data);
 int 				flood_fill(t_game_data *game_data, char **duplicated_map, size_t x, size_t y);
 char				**duplicate_map_array(t_game_data game_data);
-void				get_player_starting_position(char **map_array, size_t *player_coords);
+void				get_character_starting_position(char **map_array, size_t *character_coords);
 void				close_and_free_routine(int map_fd, t_game_data *game_data);
+
+// GAME
+
+int	launch_game(t_game_data *game_data);
 
 # endif

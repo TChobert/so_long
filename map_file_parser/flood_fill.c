@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 19:01:46 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:18:04 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int flood_fill(t_game_data *game_data, char **duplicated_map,
 t_map_status	launch_flood_fill(t_game_data game_data)
 {
 	char	**duplicated_map;
-	size_t	player_coords[2];
+	size_t	character_coords[2];
 
 	duplicated_map = duplicate_map_array(game_data);
 	if (duplicated_map == NULL)
@@ -62,9 +62,9 @@ t_map_status	launch_flood_fill(t_game_data game_data)
 		return (INVALID_MAP);
 		//perror();
 	}
-	get_player_starting_position(duplicated_map, player_coords);
-	if (flood_fill(&game_data, duplicated_map, player_coords[0],
-			player_coords[1]) == EXIT_FAILURE)
+	get_character_starting_position(duplicated_map, character_coords);
+	if (flood_fill(&game_data, duplicated_map, character_coords[0],
+			character_coords[1]) == EXIT_FAILURE)
 	{
 		ft_free_and_null(duplicated_map);
 		return (INVALID_MAP);

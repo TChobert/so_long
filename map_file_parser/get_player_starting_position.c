@@ -6,13 +6,13 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 18:54:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 18:54:55 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:19:06 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_player_starting_position(char **map_array, size_t *player_coords)
+void	get_character_starting_position(char **map_array, size_t *player_coords)
 {
 	size_t	x;
 	size_t	y;
