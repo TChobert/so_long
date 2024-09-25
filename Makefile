@@ -73,6 +73,9 @@ SRCS += close_and_free_routine.c
 # game #
 
 SRCS += game_launcher.c
+SRCS += init_game.c
+SRCS += load_game_images.c
+SRCS += run_game.c
 
 # main #
 

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 15:54:21 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:03:28 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@
 
 typedef enum	e_items_types
 {
+	FLOOR_ITEM = '0',
+	WALL_ITEM = '1',
 	PLAYER_ITEM = 'P',
 	COLLECTIBLE_ITEM = 'C',
-	WALL_ITEM = '1',
 	EXIT_ITEM = 'E'
 }				t_items_types;
 
@@ -94,7 +95,7 @@ typedef struct	s_image_data
 
 typedef struct	s_images_data
 {
-	t_image_data	player_img;
+	t_image_data	character_img;
 	t_image_data	collectible_img;
 	t_image_data	exit_img;
 	t_image_data	wall_img;
@@ -106,6 +107,12 @@ typedef struct	s_mlx_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 }				t_mlx_data;
+
+typedef struct s_map_item
+{
+	char 			item;
+	t_image_data	*image_data;
+}				t_map_item;
 
 typedef struct	s_game_data
 {
@@ -148,5 +155,8 @@ void				close_and_free_routine(int map_fd, t_game_data *game_data);
 // GAME
 
 int	launch_game(t_game_data *game_data);
+int init_game(t_game_data *game_data);
+int load_game_images(t_game_data *game_data);
+int run_game(t_game_data *game_data);
 
 # endif

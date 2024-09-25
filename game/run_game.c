@@ -1,73 +1,80 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_launcher.c                                    :+:      :+:    :+:   */
+/*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 16:34:41 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:18:58 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_image_load(void *mlx_ptr, t_image_data *image_data)
+static int	draw_image(t_game_data *game_data, t_image_data *image_data,
+				size_t x, size_t y)
 {
-	if (image_data->img_ptr == NULL)
+	if (game_data == NULL || game_data->mlx_data.mlx_ptr == NULL
+			|| game_data->mlx_data.win_ptr == NULL
+			|| game_data->images_data.floor_img.img_ptr == NULL)
 	{
-		mlx_destroy_display(mlx_ptr);
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
+	}
+	mlx_put_image_to_window(game_data->mlx_data.mlx_ptr,
+								game_data->mlx_data.win_ptr,
+								image_data->img_ptr,
+								y * TILE_SIZE, x * TILE_SIZE);
+	return (EXIT_SUCCESS);
+}
+
+static int	draw_map_to_window(t_game_data	*game_data, t_map_item *map_items)
+{
+	size_t	x;
+	size_t	y;
+	size_t	i;
+
+	x = 0;
+	while (x < game_data->current_map_data.map_rows_number)
+	{
+		y = 0;
+		while (y < game_data->current_map_data.map_columns_number)
+		{
+			i = 0;
+			while (map_items[i].item != 0)
+			{
+				if (game_data->current_map_data.map_array[x][y]
+						== map_items[i].item)
+				{
+					if (draw_image(game_data, map_items[i].image_data, x, y) == EXIT_FAILURE)
+						return (EXIT_FAILURE);
+				}
+				++i;
+			}
+			++y;
+		}
+		++x;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int load_image(void *mlx_ptr, t_image_data *image_data, const char *file_path)
+static void init_map_items(t_game_data *game_data, t_map_item *map_items)
 {
-	image_data->img_ptr = mlx_xpm_file_to_image(mlx_ptr, (char *)file_path, &image_data->width, &image_data->height);
-	return (check_image_load(mlx_ptr, image_data));
-}
-
-int	load_images(t_game_data *game_data)
-{
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.player_img, "./assets/player.xpm") == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.collectible_img, "./assets/collectible.xpm") == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.exit_img, "./assets/exit.xpm") == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.wall_img, "./assets/wall.xpm") == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	init_game(t_game_data *game_data)
-{
-	game_data->mlx_data.mlx_ptr = mlx_init();
-	if (game_data->mlx_data.mlx_ptr == NULL)
-		return (EXIT_FAILURE);
-	game_data->mlx_data.win_ptr = mlx_new_window(game_data->mlx_data.mlx_ptr,
-				game_data->current_map_data.map_columns_number * TILE_SIZE,
-				game_data->current_map_data.map_rows_number * TILE_SIZE,
-				"so_long");
-	if (game_data->mlx_data.win_ptr == NULL)
-	{
-		return (EXIT_FAILURE);
-	}
+	map_items[0] = (t_map_item){FLOOR_ITEM, &game_data->images_data.floor_img};
+	map_items[1] = (t_map_item){WALL_ITEM, &game_data->images_data.wall_img};
+	map_items[2] = (t_map_item){PLAYER_ITEM, &game_data->images_data.character_img};
+	map_items[3] = (t_map_item){COLLECTIBLE_ITEM, &game_data->images_data.collectible_img};
+	map_items[4] = (t_map_item){EXIT_ITEM, &game_data->images_data.exit_img};
+	map_items[5] = (t_map_item){0, NULL};
 }
 
 int	run_game(t_game_data *game_data)
 {
-	if (init_game(game_data) == EXIT_FAILURE)
-	{
-		//game_routine_exit(game_data);
+	t_map_item	map_items[6];
+
+	init_map_items(game_data, map_items);
+	if (draw_map_to_window(game_data, map_items) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	}
-	if (load_images(game_data) == EXIT_FAILURE)
-	{
-		//game_routine_exit(game_data);
-		return (EXIT_FAILURE);
-	}
 	mlx_loop(game_data->mlx_data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

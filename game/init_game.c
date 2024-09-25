@@ -3,11 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchobert <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:55 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 16:36:06 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:18:10 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	init_mlx_data(t_game_data *game_data)
+{
+	game_data->mlx_data.mlx_ptr = mlx_init();
+	if (game_data->mlx_data.mlx_ptr == NULL)
+		return (EXIT_FAILURE);
+	game_data->mlx_data.win_ptr = mlx_new_window(game_data->mlx_data.mlx_ptr,
+				game_data->current_map_data.map_columns_number * TILE_SIZE,
+				game_data->current_map_data.map_rows_number * TILE_SIZE,
+				"so_long");
+	if (game_data->mlx_data.win_ptr == NULL)
+	{
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	init_game(t_game_data *game_data)
+{
+	if (init_mlx_data(game_data) == EXIT_FAILURE)
+	{
+		return (EXIT_FAILURE);
+	}
+	return (load_game_images(game_data));
+}
