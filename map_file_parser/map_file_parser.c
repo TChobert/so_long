@@ -36,6 +36,7 @@ t_map_status	map_file_parser(const char *map_file_path,
 		close_and_free_routine(map_fd, game_data);
 	 	return (INVALID_MAP);
 	}
-	close_and_free_routine(map_fd, game_data);
+	//ft_free_and_null(game_data->current_map_data.map_array);
+	close(map_fd);
 	return (VALID_MAP);
 }

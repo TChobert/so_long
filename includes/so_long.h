@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/24 15:54:51 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:54:21 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ITEM_STR "01PEC"
 # define WALL '1'
 # define BER_SUFFIX ".ber"
+# define TILE_SIZE 32
 
 // TYPEDEFS //
 
@@ -84,11 +85,34 @@ typedef struct	s_character_data
 	int		character_current_coord[2];
 }				t_character_data;
 
+typedef struct	s_image_data
+{
+	void	*img_ptr;
+	int		width;
+	int		height;
+}				t_image_data;
+
+typedef struct	s_images_data
+{
+	t_image_data	player_img;
+	t_image_data	collectible_img;
+	t_image_data	exit_img;
+	t_image_data	wall_img;
+	t_image_data	floor_img;
+}				t_images_data;
+
+typedef struct	s_mlx_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}				t_mlx_data;
+
 typedef struct	s_game_data
 {
 	t_map_data			current_map_data;
 	t_character_data	current_character_data;
-
+	t_mlx_data			mlx_data;
+	t_images_data		images_data;
 }				t_game_data;
 
 
@@ -118,7 +142,7 @@ bool				is_surrounded_by_walls(const char *line, t_game_data *game_data);
 t_map_status		launch_flood_fill(t_game_data game_data);
 int 				flood_fill(t_game_data *game_data, char **duplicated_map, size_t x, size_t y);
 char				**duplicate_map_array(t_game_data game_data);
-void				get_character_starting_position(char **map_array, size_t *character_coords);
+void				get_character_starting_position(char **map_array, int *character_coords);
 void				close_and_free_routine(int map_fd, t_game_data *game_data);
 
 // GAME
