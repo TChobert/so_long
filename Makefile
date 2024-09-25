@@ -52,6 +52,7 @@ endif
 
 SRCS_DIR += map_file_parser
 SRCS_DIR += game
+SRCS_DIR += utils
 
 # map parsing #
 
@@ -67,7 +68,7 @@ SRCS += errors_displaying.c
 SRCS += flood_fill.c
 SRCS += add_line_data.c
 SRCS += duplicate_map_array.c
-SRCS += get_player_starting_position.c
+
 SRCS += close_and_free_routine.c
 
 # game #
@@ -76,6 +77,10 @@ SRCS += game_launcher.c
 SRCS += init_game.c
 SRCS += load_game_images.c
 SRCS += run_game.c
+
+# utils #
+
+SRCS += get_character_position.c
 
 # main #
 
