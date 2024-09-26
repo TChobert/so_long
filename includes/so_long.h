@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 15:22:23 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:55:22 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@
 # define TILE_SIZE 32
 
 // TYPEDEFS //
+
+typedef enum	e_move_status
+{
+	VALID_MOVE,
+	INVALID_MOVE
+}				t_move_status;
 
 typedef enum	e_items_types
 {
@@ -131,7 +137,7 @@ typedef struct	s_game_data
 	t_images_data		images_data;
 }				t_game_data;
 
-typedef void	(*moves_functions)(t_game_data *);
+typedef void	(*key_press_functions)(t_game_data *);
 
 // PROTOTYPES //
 

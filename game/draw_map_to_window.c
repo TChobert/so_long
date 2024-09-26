@@ -6,13 +6,13 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:39:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 14:40:21 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:05:20 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	draw_image(t_game_data *game_data, t_image_data *image_data,
+int	draw_image(t_game_data *game_data, t_image_data *image_data,
 				size_t x, size_t y)
 {
 	if (game_data == NULL || game_data->mlx_data.mlx_ptr == NULL
