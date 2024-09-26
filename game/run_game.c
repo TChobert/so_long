@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 18:39:10 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:18:35 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,8 @@ static void init_map_items(t_game_data *game_data, t_map_item *map_items)
 
 void	update_character_position(t_game_data *game_data, unsigned int *character_new_coords)
 {
-	printf("OY = %d\n", game_data->character_data.character_coord[0] = character_new_coords[0]);
-	printf("OX = %d\n", game_data->character_data.character_coord[1] = character_new_coords[1]);
-
 	game_data->character_data.character_coord[0] = character_new_coords[0];
 	game_data->character_data.character_coord[1] = character_new_coords[1];
-
-	printf("NY = %d\n", game_data->character_data.character_coord[0] = character_new_coords[0]);
-	printf("NX = %d\n", game_data->character_data.character_coord[1] = character_new_coords[1]);
 }
 
 void	print_character_position(t_game_data *game_data, unsigned int *old_character_coords)
@@ -54,12 +48,8 @@ void	update_and_print_character_position(t_game_data *game_data, unsigned int *c
 }
 t_move_status	check_move_status(t_game_data *game_data, unsigned int *character_new_coords)
 {
-	if (character_new_coords[1] < 0 || character_new_coords[0] < 0
-		|| character_new_coords[1] >= game_data->map_data.map_columns_number
-		|| character_new_coords[0] >= game_data->map_data.map_rows_number)
-		return (VALID_MOVE);
 	if (game_data->map_data.map_array[character_new_coords[0]][character_new_coords[1]] == WALL_ITEM)
-		return (VALID_MOVE);
+		return (INVALID_MOVE);
 	return (VALID_MOVE);
 }
 
@@ -68,11 +58,9 @@ t_move_status	move_up(t_game_data *game_data)
 	unsigned int	character_new_coords[2];
 	t_move_status	move_status;
 
-	printf("HERE\n");
-	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
+	character_new_coords[0] = game_data->character_data.character_coord[0];
+	character_new_coords[1] = game_data->character_data.character_coord[1] - 1;
 	move_status = check_move_status(game_data, character_new_coords);
-	printf("%d\n", move_status);
 	if (move_status == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -83,8 +71,8 @@ t_move_status	move_left(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] - 1;
+	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
+	character_new_coords[1] = game_data->character_data.character_coord[1];
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -95,8 +83,8 @@ t_move_status	move_right(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
+	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
+	character_new_coords[1] = game_data->character_data.character_coord[1];
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -107,8 +95,8 @@ t_move_status	move_down(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
+	character_new_coords[0] = game_data->character_data.character_coord[0];
+	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -166,6 +154,7 @@ int	run_game(t_game_data *game_data)
 	init_map_items(game_data, map_items);
 	if (draw_map_to_window(game_data, map_items) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	ft_display_strs_array(game_data->map_data.map_array, STDOUT_FILENO);
 	mlx_key_hook(game_data->mlx_data.win_ptr, handle_keypress, game_data);
 	mlx_loop(game_data->mlx_data.mlx_ptr);
 	return (EXIT_SUCCESS);
