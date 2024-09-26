@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:41:35 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:42:57 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define WALL '1'
 # define BER_SUFFIX ".ber"
 # define TILE_SIZE 32
+
+#define KEY_W_INDEX 0
+#define KEY_A_INDEX 1
+#define KEY_D_INDEX 2
+#define KEY_S_INDEX 3
+#define KEY_ESC_INDEX 4
 
 // TYPEDEFS //
 
@@ -183,11 +189,14 @@ t_move_status	move_up(t_game_data *game_data);
 t_move_status	move_left(t_game_data *game_data);
 t_move_status	move_right(t_game_data *game_data);
 t_move_status	move_down(t_game_data *game_data);
-int	close_game(t_game_data *game_data);
-void	handle_keypress(int keycode, t_game_data *game_data);
+t_move_status	close_game(t_game_data *game_data);
+int				handle_keypress(int keycode, t_game_data *game_data);
+t_move_status	check_move_status(t_game_data *game_data, unsigned int *character_new_coords);
+int	draw_image(t_game_data *game_data, t_image_data *image_data,
+				size_t x, size_t y);
 
 // UTILS
 
-void				get_character_position(char **map_array, int *character_coords);
+void				get_character_position(char **map_array, unsigned int *character_coords);
 
 # endif

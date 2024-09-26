@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:41:17 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:39:10 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,23 @@ static void init_map_items(t_game_data *game_data, t_map_item *map_items)
 
 void	update_character_position(t_game_data *game_data, unsigned int *character_new_coords)
 {
+	printf("OY = %d\n", game_data->character_data.character_coord[0] = character_new_coords[0]);
+	printf("OX = %d\n", game_data->character_data.character_coord[1] = character_new_coords[1]);
+
 	game_data->character_data.character_coord[0] = character_new_coords[0];
 	game_data->character_data.character_coord[1] = character_new_coords[1];
+
+	printf("NY = %d\n", game_data->character_data.character_coord[0] = character_new_coords[0]);
+	printf("NX = %d\n", game_data->character_data.character_coord[1] = character_new_coords[1]);
 }
 
 void	print_character_position(t_game_data *game_data, unsigned int *old_character_coords)
 {
 	draw_image(game_data, &game_data->images_data.floor_img,
-				old_character_coords[0], old_character_coords[1]);
+				old_character_coords[1], old_character_coords[0]);
 	draw_image(game_data, &game_data->images_data.character_img,
-				game_data->character_data.character_coord[0],
-				game_data->character_data.character_coord[1]);
+				game_data->character_data.character_coord[1],
+				game_data->character_data.character_coord[0]);
 }
 
 void	update_and_print_character_position(t_game_data *game_data, unsigned int *character_new_coords)
@@ -46,8 +52,34 @@ void	update_and_print_character_position(t_game_data *game_data, unsigned int *c
 	update_character_position(game_data, character_new_coords);
 	print_character_position(game_data, old_character_coords);
 }
+t_move_status	check_move_status(t_game_data *game_data, unsigned int *character_new_coords)
+{
+	if (character_new_coords[1] < 0 || character_new_coords[0] < 0
+		|| character_new_coords[1] >= game_data->map_data.map_columns_number
+		|| character_new_coords[0] >= game_data->map_data.map_rows_number)
+		return (VALID_MOVE);
+	if (game_data->map_data.map_array[character_new_coords[0]][character_new_coords[1]] == WALL_ITEM)
+		return (VALID_MOVE);
+	return (VALID_MOVE);
+}
 
 t_move_status	move_up(t_game_data *game_data)
+{
+	unsigned int	character_new_coords[2];
+	t_move_status	move_status;
+
+	printf("HERE\n");
+	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
+	character_new_coords[1] = game_data->character_data.character_coord[1];
+	move_status = check_move_status(game_data, character_new_coords);
+	printf("%d\n", move_status);
+	if (move_status == INVALID_MOVE)
+		return (INVALID_MOVE);
+	update_and_print_character_position(game_data, character_new_coords);
+	return (VALID_MOVE);
+}
+
+t_move_status	move_left(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
@@ -59,24 +91,12 @@ t_move_status	move_up(t_game_data *game_data)
 	return (VALID_MOVE);
 }
 
-t_move_status	move_left(t_game_data *game_data)
-{
-	unsigned int	character_new_coords[2];
-
-	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
-	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
-		return (INVALID_MOVE);
-	update_and_print_character_position(game_data, character_new_coords);
-	return (VALID_MOVE);
-}
-
 t_move_status	move_right(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
+	character_new_coords[0] = game_data->character_data.character_coord[0];
+	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -87,8 +107,8 @@ t_move_status	move_down(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
+	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
+	character_new_coords[1] = game_data->character_data.character_coord[1];
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -101,7 +121,26 @@ t_move_status	close_game(t_game_data *game_data)
 	exit(EXIT_SUCCESS);
 }
 
-void	handle_keypress(int keycode, t_game_data *game_data)
+int	define_keycode_to_move_function(int keycode)
+{
+	int	key_function_call;
+
+	key_function_call = -1;
+	if (keycode == W_KEY)
+		key_function_call = KEY_W_INDEX;
+	else if (keycode == A_KEY)
+		key_function_call = KEY_A_INDEX;
+	else if (keycode == S_KEY)
+		key_function_call = KEY_S_INDEX;
+	else if (keycode == D_KEY)
+		key_function_call = KEY_D_INDEX;
+	else if (keycode == ESC_KEY)
+		key_function_call = KEY_ESC_INDEX;
+
+	return (key_function_call);
+}
+
+int	handle_keypress(int keycode, t_game_data *game_data)
 {
 	key_press_functions	key_press_functions[] = {
 		move_up,
@@ -110,8 +149,14 @@ void	handle_keypress(int keycode, t_game_data *game_data)
 		move_down,
 		close_game
 	};
+	int	key_function_call;
 
-	return (key_press_functions[keycode](game_data));
+	key_function_call = define_keycode_to_move_function(keycode);
+	 if (key_function_call >= 0 && key_function_call < 5)
+	{
+		key_press_functions[key_function_call](game_data);
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	run_game(t_game_data *game_data)

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:55 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:33:42 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:41:26 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ int	init_game(t_game_data *game_data)
 	{
 		return (EXIT_FAILURE);
 	}
+	get_character_position(game_data->map_data.map_array,
+		game_data->character_data.character_coord);
 	return (load_game_images(game_data));
 }

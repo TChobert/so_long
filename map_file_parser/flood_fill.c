@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:35:46 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:43:28 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int flood_fill(t_game_data *game_data, char **duplicated_map,
 
 t_map_status	launch_flood_fill(t_game_data game_data)
 {
-	char	**duplicated_map;
-	int		character_coords[2];
+	char				**duplicated_map;
+	unsigned int		character_coords[2];
 
 	duplicated_map = duplicate_map_array(game_data);
 	if (duplicated_map == NULL)
