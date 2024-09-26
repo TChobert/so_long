@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 19:18:35 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:32:35 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	update_character_position(t_game_data *game_data, unsigned int *character_n
 void	print_character_position(t_game_data *game_data, unsigned int *old_character_coords)
 {
 	draw_image(game_data, &game_data->images_data.floor_img,
-				old_character_coords[1], old_character_coords[0]);
+				old_character_coords[0], old_character_coords[1]);
 	draw_image(game_data, &game_data->images_data.character_img,
-				game_data->character_data.character_coord[1],
-				game_data->character_data.character_coord[0]);
+				game_data->character_data.character_coord[0],
+				game_data->character_data.character_coord[1]);
 }
 
 void	update_and_print_character_position(t_game_data *game_data, unsigned int *character_new_coords)
@@ -58,8 +58,8 @@ t_move_status	move_up(t_game_data *game_data)
 	unsigned int	character_new_coords[2];
 	t_move_status	move_status;
 
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] - 1;
+	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
+	character_new_coords[1] = game_data->character_data.character_coord[1];
 	move_status = check_move_status(game_data, character_new_coords);
 	if (move_status == INVALID_MOVE)
 		return (INVALID_MOVE);
@@ -71,8 +71,8 @@ t_move_status	move_left(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
+	character_new_coords[0] = game_data->character_data.character_coord[0];
+	character_new_coords[1] = game_data->character_data.character_coord[1] - 1;
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -83,8 +83,8 @@ t_move_status	move_right(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
+	character_new_coords[0] = game_data->character_data.character_coord[0];
+	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
@@ -95,8 +95,8 @@ t_move_status	move_down(t_game_data *game_data)
 {
 	unsigned int	character_new_coords[2];
 
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
+	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
+	character_new_coords[1] = game_data->character_data.character_coord[1];
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
 	update_and_print_character_position(game_data, character_new_coords);
