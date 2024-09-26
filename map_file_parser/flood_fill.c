@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 19:55:45 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:35:46 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,24 @@ static int	flood_fill_recursive_calls(t_game_data *game_data,
 int flood_fill(t_game_data *game_data, char **duplicated_map,
 						size_t x, size_t y)
 {
-	if (x < 0 || x >= game_data->current_map_data.map_rows_number || y < 0
-			|| y >= game_data->current_map_data.map_columns_number - 1)
+	if (x < 0 || x >= game_data->map_data.map_rows_number || y < 0
+			|| y >= game_data->map_data.map_columns_number - 1)
 			return (EXIT_FAILURE);
 	if (duplicated_map[x][y] == '1' || duplicated_map[x][y] == 'V')
 		return (EXIT_FAILURE);
 	if (duplicated_map[x][y] == 'C')
 	{
 		duplicated_map[x][y] = '0';
-		game_data->current_map_data.items_values.collectibles_number -= 1;
+		game_data->map_data.items_values.collectibles_number -= 1;
 	}
 	if (duplicated_map[x][y] == 'E')
 	{
 		duplicated_map[x][y] = '0';
-		game_data->current_map_data.items_values.exit_number -= 1;
+		game_data->map_data.items_values.exit_number -= 1;
 	}
 	duplicated_map[x][y] = 'V';
-	if ((game_data->current_map_data.items_values.exit_number == 0)
-		&& (game_data->current_map_data.items_values.collectibles_number == 0))
+	if ((game_data->map_data.items_values.exit_number == 0)
+		&& (game_data->map_data.items_values.collectibles_number == 0))
 		return (EXIT_SUCCESS);
 	return (flood_fill_recursive_calls(game_data, duplicated_map, x, y));
 }
@@ -69,7 +69,7 @@ t_map_status	launch_flood_fill(t_game_data game_data)
 		ft_free_and_null(duplicated_map);
 		return (INVALID_MAP);
 	}
-	if (game_data.current_map_data.items_values.collectibles_number != 0)
+	if (game_data.map_data.items_values.collectibles_number != 0)
 	{
 		ft_free_and_null(duplicated_map);
 		return (INVALID_MAP);

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:55:08 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 17:37:05 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:34:30 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*build_map_line(int map_file_fd, t_game_data *game_data)
 		}
 		free(line);
 		line = get_next_line(map_file_fd);
-		game_data->current_map_data.map_rows_number += 1;
+		game_data->map_data.map_rows_number += 1;
 		free(temp_map_line);
 	}
 	free(line);

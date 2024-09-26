@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 16:34:14 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/23 16:35:01 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:35:10 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	fill_new_array(t_game_data game_data, char **new_array)
 	size_t	i;
 
 	i = 0;
-	while (game_data.current_map_data.map_array[i] != NULL)
+	while (game_data.map_data.map_array[i] != NULL)
 	{
-		new_array[i] = ft_strdup(game_data.current_map_data.map_array[i]);
+		new_array[i] = ft_strdup(game_data.map_data.map_array[i]);
 		if (new_array[i] == NULL)
 		{
 			ft_free_and_null(new_array);
@@ -46,7 +46,7 @@ char	**duplicate_map_array(t_game_data game_data)
 	char 	**new_array;
 	size_t	array_size;
 
-	array_size = get_map_array_size(game_data.current_map_data.map_array);
+	array_size = get_map_array_size(game_data.map_data.map_array);
 	new_array = (char **)malloc(sizeof(char *) * (array_size + 1));
 	if (new_array != NULL)
 	{

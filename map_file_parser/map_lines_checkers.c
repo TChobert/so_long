@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:00:19 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/21 19:08:27 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:37:07 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_map_line_status	check_first_line(const char *first_line, t_game_data *game_dat
 {
 	if (first_line == NULL || is_full_wall(first_line) == false)
 		return (INVALID_LINE);
-	game_data->current_map_data.map_columns_number = get_line_size(first_line);
+	game_data->map_data.map_columns_number = get_line_size(first_line);
 	return (VALID_LINE);
 }
 

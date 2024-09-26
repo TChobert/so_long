@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:35:50 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 19:42:15 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:36:58 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ bool	is_correct_size(const char *line, t_game_data *game_data)
 {
 	const size_t	line_size = get_line_size(line);
 
-	return (line_size == game_data->current_map_data.map_columns_number);
+	return (line_size == game_data->map_data.map_columns_number);
 }
 
 bool	is_surrounded_by_walls(const char *line, t_game_data *game_data)
 {
-	return ((line[0] == WALL) && (line[game_data->current_map_data.map_columns_number - 1] == WALL));
+	return ((line[0] == WALL) && (line[game_data->map_data.map_columns_number - 1] == WALL));
 }
 
 t_map_line_status	check_line_items(const char *line)

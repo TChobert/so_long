@@ -24,8 +24,8 @@ t_map_status	map_file_parser(const char *map_file_path,
 		close_and_free_routine(map_fd, game_data);
 		return (INVALID_MAP);
 	}
-	game_data->current_map_data.map_array = build_map_array(map_fd, game_data);
-	if (game_data->current_map_data.map_array == NULL)
+	game_data->map_data.map_array = build_map_array(map_fd, game_data);
+	if (game_data->map_data.map_array == NULL)
 	{
 		close_and_free_routine(map_fd, game_data);
 		return (EXIT_FAILURE);

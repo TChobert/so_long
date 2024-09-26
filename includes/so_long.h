@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 15:55:22 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:41:35 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,13 @@ typedef struct s_map_item
 
 typedef struct	s_game_data
 {
-	t_map_data			current_map_data;
-	t_character_data	current_character_data;
+	t_map_data			map_data;
+	t_character_data	character_data;
 	t_mlx_data			mlx_data;
 	t_images_data		images_data;
 }				t_game_data;
 
-typedef void	(*key_press_functions)(t_game_data *);
+typedef t_move_status	(*key_press_functions)(t_game_data *);
 
 // PROTOTYPES //
 
@@ -175,6 +175,16 @@ int					load_game_images(t_game_data *game_data);
 int					run_game(t_game_data *game_data);
 
 int					draw_map_to_window(t_game_data	*game_data, t_map_item *map_items);
+
+void	update_character_position(t_game_data *game_data, unsigned int *character_new_coords);
+void	print_character_position(t_game_data *game_data, unsigned int *old_character_coords);
+void	update_and_print_character_position(t_game_data *game_data, unsigned int *character_new_coords);
+t_move_status	move_up(t_game_data *game_data);
+t_move_status	move_left(t_game_data *game_data);
+t_move_status	move_right(t_game_data *game_data);
+t_move_status	move_down(t_game_data *game_data);
+int	close_game(t_game_data *game_data);
+void	handle_keypress(int keycode, t_game_data *game_data);
 
 // UTILS
 
