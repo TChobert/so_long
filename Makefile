@@ -77,6 +77,7 @@ SRCS += game_launcher.c
 SRCS += init_game.c
 SRCS += load_game_images.c
 SRCS += run_game.c
+SRCS += draw_map_to_window.c
 
 # utils #
 

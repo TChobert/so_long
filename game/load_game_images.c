@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 19:24:14 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:19:30 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int check_image_load(void *mlx_ptr, t_image_data *image_data)
 {
 	if (image_data->img_ptr == NULL)
 	{
-		mlx_destroy_display(mlx_ptr);
+		mlx_destroy_display(mlx_ptr); // DANS ROUTINE EXIT OU STAY HERE ??
 		exit(EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

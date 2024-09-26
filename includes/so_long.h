@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 19:55:27 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:22:23 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ typedef enum	e_items_types
 	COLLECTIBLE_ITEM = 'C',
 	EXIT_ITEM = 'E'
 }				t_items_types;
+
+typedef enum	e_key_codes
+{
+	W_KEY = 119,
+	A_KEY = 97,
+	D_KEY = 100,
+	S_KEY = 115,
+	ESC_KEY = 65307
+}				t_key_codes;
 
 typedef enum	e_opening_status
 {
@@ -82,8 +91,8 @@ typedef struct	s_map_data
 
 typedef struct	s_character_data
 {
-	int		character_starting_coord[2];
-	int		character_current_coord[2];
+	unsigned int	character_coord[2];
+	unsigned int	moves_counter;
 }				t_character_data;
 
 typedef struct	s_image_data
@@ -122,6 +131,7 @@ typedef struct	s_game_data
 	t_images_data		images_data;
 }				t_game_data;
 
+typedef void	(*moves_functions)(t_game_data *);
 
 // PROTOTYPES //
 
@@ -153,10 +163,12 @@ void				close_and_free_routine(int map_fd, t_game_data *game_data);
 
 // GAME
 
-int	launch_game(t_game_data *game_data);
-int init_game(t_game_data *game_data);
-int load_game_images(t_game_data *game_data);
-int run_game(t_game_data *game_data);
+int					launch_game(t_game_data *game_data);
+int					init_game(t_game_data *game_data);
+int					load_game_images(t_game_data *game_data);
+int					run_game(t_game_data *game_data);
+
+int					draw_map_to_window(t_game_data	*game_data, t_map_item *map_items);
 
 // UTILS
 
