@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:59:49 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:01:54 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ t_move_status	close_game(t_game_data *game_data)
 	mlx_destroy_window(game_data->mlx_data.mlx_ptr, game_data->mlx_data.win_ptr);
 	mlx_destroy_display(game_data->mlx_data.mlx_ptr);
 	ft_free_and_null(game_data->map_data.map_array);
+	free(game_data->mlx_data.mlx_ptr);
 	exit(EXIT_SUCCESS);
 }
