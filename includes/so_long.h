@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 18:42:57 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:21:26 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@
 typedef enum	e_move_status
 {
 	VALID_MOVE,
-	INVALID_MOVE
+	INVALID_MOVE,
+	EXIT_MOVE
 }				t_move_status;
 
 typedef enum	e_items_types
