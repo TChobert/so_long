@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:37:47 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:39:25 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:16:44 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_move_status	move_left(t_game_data *game_data)
 	character_new_coords[1] = game_data->character_data.character_coord[1] - 1;
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
+	game_data->character_data.is_right = false;
 	get_collectible(game_data, character_new_coords);
 	if (check_exit_move(game_data, character_new_coords) == EXIT_MOVE)
 		return (close_game(game_data));
@@ -50,6 +51,7 @@ t_move_status	move_right(t_game_data *game_data)
 	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
 	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
 		return (INVALID_MOVE);
+	game_data->character_data.is_right = true;
 	get_collectible(game_data, character_new_coords);
 	if (check_exit_move(game_data, character_new_coords) == EXIT_MOVE)
 		return (close_game(game_data));

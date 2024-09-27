@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:47:38 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:16:02 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct	s_character_data
 {
 	unsigned int	character_coord[2];
 	unsigned int	moves_counter;
+	bool			is_right;
 }				t_character_data;
 
 typedef struct	s_image_data
@@ -118,6 +119,7 @@ typedef struct	s_image_data
 typedef struct	s_images_data
 {
 	t_image_data	character_img;
+	t_image_data	character_right_img;
 	t_image_data	collectible_img;
 	t_image_data	exit_img;
 	t_image_data	wall_img;

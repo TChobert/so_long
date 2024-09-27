@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:35:00 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 15:35:01 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:17:58 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static void	print_character_position(t_game_data *game_data,
 {
 	draw_image(game_data, &game_data->images_data.floor_img,
 				old_character_coords[0], old_character_coords[1]);
+	if (game_data->character_data.is_right == true)
+		draw_image(game_data, &game_data->images_data.character_right_img,
+				game_data->character_data.character_coord[0],
+				game_data->character_data.character_coord[1]);
+	else
 	draw_image(game_data, &game_data->images_data.character_img,
 				game_data->character_data.character_coord[0],
 				game_data->character_data.character_coord[1]);

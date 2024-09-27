@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:44:57 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:45:37 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ static int	handle_keypress(int keycode, t_game_data *game_data)
 	return (EXIT_SUCCESS);
 }
 
+// static int	handle_mouse_ckick()
+// {
+
+// }
+
 int	run_game(t_game_data *game_data)
 {
 	t_map_item	map_items[6];
@@ -68,6 +73,7 @@ int	run_game(t_game_data *game_data)
 	if (draw_map_to_window(game_data, map_items) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	mlx_key_hook(game_data->mlx_data.win_ptr, handle_keypress, game_data);
+	//mlx_mouse_hook(game_data->mlx_data.win_ptr, handle_mouse_click, game_data);
 	mlx_loop(game_data->mlx_data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
