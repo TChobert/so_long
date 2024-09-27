@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 16:31:18 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:21:51 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	load_game_images(t_game_data *game_data)
 		return (EXIT_FAILURE);
 	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.character_right_img, "./assets/test_hedgehog_right.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.collectible_img, "./assets/collectible_test.xpm") == EXIT_FAILURE)
+	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.collectible_img, "./assets/exp_book.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.exit_img, "./assets/exit_test.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
