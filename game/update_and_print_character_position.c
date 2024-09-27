@@ -6,11 +6,16 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:35:00 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:45:37 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:35:01 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	display_current_moves_number(t_game_data *game_data)
+{
+	ft_printf("Moves: %d\n", game_data->character_data.moves_counter);
+}
 
 static void	update_character_position(t_game_data *game_data,
 										unsigned int *character_new_coords)
@@ -18,6 +23,7 @@ static void	update_character_position(t_game_data *game_data,
 	game_data->character_data.character_coord[0] = character_new_coords[0];
 	game_data->character_data.character_coord[1] = character_new_coords[1];
 	game_data->character_data.moves_counter+= 1;
+	display_current_moves_number(game_data);
 }
 
 static void	print_character_position(t_game_data *game_data,
