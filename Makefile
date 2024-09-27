@@ -79,10 +79,15 @@ SRCS += load_game_images.c
 SRCS += run_game.c
 SRCS += draw_map_to_window.c
 SRCS += draw_image.c
+SRCS += moves_checkers.c
+SRCS += update_and_print_character_position.c
+SRCS += character_moves.c
 
 # utils #
 
 SRCS += get_character_position.c
+SRCS += get_collectible.c
+SRCS += close_game.c
 
 # main #
 

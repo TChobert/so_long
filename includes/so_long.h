@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:21:26 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:47:38 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,21 +183,25 @@ int					run_game(t_game_data *game_data);
 
 int					draw_map_to_window(t_game_data	*game_data, t_map_item *map_items);
 
-void	update_character_position(t_game_data *game_data, unsigned int *character_new_coords);
-void	print_character_position(t_game_data *game_data, unsigned int *old_character_coords);
-void	update_and_print_character_position(t_game_data *game_data, unsigned int *character_new_coords);
-t_move_status	move_up(t_game_data *game_data);
-t_move_status	move_left(t_game_data *game_data);
-t_move_status	move_right(t_game_data *game_data);
-t_move_status	move_down(t_game_data *game_data);
-t_move_status	close_game(t_game_data *game_data);
-int				handle_keypress(int keycode, t_game_data *game_data);
-t_move_status	check_move_status(t_game_data *game_data, unsigned int *character_new_coords);
-int	draw_image(t_game_data *game_data, t_image_data *image_data,
+void				update_and_print_character_position(t_game_data *game_data, unsigned int *character_new_coords);
+
+t_move_status		move_up(t_game_data *game_data);
+t_move_status		move_left(t_game_data *game_data);
+t_move_status		move_right(t_game_data *game_data);
+t_move_status		move_down(t_game_data *game_data);
+
+t_move_status		close_game(t_game_data *game_data);
+
+t_move_status		check_move_status(t_game_data *game_data, unsigned int *character_new_coords);
+t_move_status		check_exit_move(t_game_data *game_data, unsigned int *character_new_coords);
+
+int					draw_image(t_game_data *game_data, t_image_data *image_data,
 				size_t x, size_t y);
 
 // UTILS
 
+void				get_collectible(t_game_data *game_data, unsigned int *character_new_coords);
 void				get_character_position(char **map_array, unsigned int *character_coords);
+t_move_status		close_game(t_game_data *game_data);
 
 # endif

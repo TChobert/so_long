@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 14:26:34 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:44:57 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,127 +22,7 @@ static void init_map_items(t_game_data *game_data, t_map_item *map_items)
 	map_items[5] = (t_map_item){0, NULL};
 }
 
-void	update_character_position(t_game_data *game_data, unsigned int *character_new_coords)
-{
-	game_data->character_data.character_coord[0] = character_new_coords[0];
-	game_data->character_data.character_coord[1] = character_new_coords[1];
-	game_data->character_data.moves_counter+= 1;
-}
-
-void	print_character_position(t_game_data *game_data, unsigned int *old_character_coords)
-{
-	draw_image(game_data, &game_data->images_data.floor_img,
-				old_character_coords[0], old_character_coords[1]);
-	draw_image(game_data, &game_data->images_data.character_img,
-				game_data->character_data.character_coord[0],
-				game_data->character_data.character_coord[1]);
-}
-
-void	update_and_print_character_position(t_game_data *game_data, unsigned int *character_new_coords)
-{
-	unsigned int	old_character_coords[2];
-
-	old_character_coords[0] = game_data->character_data.character_coord[0];
-	old_character_coords[1] = game_data->character_data.character_coord[1];
-	update_character_position(game_data, character_new_coords);
-	print_character_position(game_data, old_character_coords);
-}
-
-t_move_status	check_exit_move(t_game_data *game_data, unsigned int *character_new_coords)
-{
-	if (game_data->map_data.map_array[character_new_coords[0]][character_new_coords[1]] == EXIT_ITEM && game_data->map_data.items_values.collectibles_number == 0)
-	{
-		game_data->character_data.moves_counter+= 1;
-		return (EXIT_MOVE);
-	}
-	return (VALID_MOVE);
-}
-t_move_status	check_move_status(t_game_data *game_data, unsigned int *character_new_coords)
-{
-	if (game_data->map_data.map_array[character_new_coords[0]][character_new_coords[1]] == WALL_ITEM)
-		return (INVALID_MOVE);
-	else if (game_data->map_data.map_array[character_new_coords[0]][character_new_coords[1]] == EXIT_ITEM && game_data->map_data.items_values.collectibles_number > 0)
-		return (INVALID_MOVE);
-	return (VALID_MOVE);
-}
-
-void	get_collectible(t_game_data *game_data, unsigned int *character_new_coords)
-{
-	if (game_data->map_data.map_array[character_new_coords[0]][character_new_coords[1]] == COLLECTIBLE_ITEM)
-	{
-		if (game_data->map_data.items_values.collectibles_number > 0)
-		game_data->map_data.items_values.collectibles_number -= 1;
-	}
-}
-
-t_move_status	move_up(t_game_data *game_data)
-{
-	unsigned int	character_new_coords[2];
-
-	character_new_coords[0] = game_data->character_data.character_coord[0] - 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
-	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
-		return (INVALID_MOVE);
-	get_collectible(game_data, character_new_coords);
-	if (check_exit_move(game_data, character_new_coords) == EXIT_MOVE)
-		return (close_game(game_data));
-	update_and_print_character_position(game_data, character_new_coords);
-	return (VALID_MOVE);
-}
-
-t_move_status	move_left(t_game_data *game_data)
-{
-	unsigned int	character_new_coords[2];
-
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] - 1;
-	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
-		return (INVALID_MOVE);
-	get_collectible(game_data, character_new_coords);
-	if (check_exit_move(game_data, character_new_coords) == EXIT_MOVE)
-		return (close_game(game_data));
-	update_and_print_character_position(game_data, character_new_coords);
-	return (VALID_MOVE);
-}
-
-t_move_status	move_right(t_game_data *game_data)
-{
-	unsigned int	character_new_coords[2];
-
-	character_new_coords[0] = game_data->character_data.character_coord[0];
-	character_new_coords[1] = game_data->character_data.character_coord[1] + 1;
-	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
-		return (INVALID_MOVE);
-	get_collectible(game_data, character_new_coords);
-	if (check_exit_move(game_data, character_new_coords) == EXIT_MOVE)
-		return (close_game(game_data));
-	update_and_print_character_position(game_data, character_new_coords);
-	return (VALID_MOVE);
-}
-
-t_move_status	move_down(t_game_data *game_data)
-{
-	unsigned int	character_new_coords[2];
-
-	character_new_coords[0] = game_data->character_data.character_coord[0] + 1;
-	character_new_coords[1] = game_data->character_data.character_coord[1];
-	if (check_move_status(game_data, character_new_coords) == INVALID_MOVE)
-		return (INVALID_MOVE);
-	get_collectible(game_data, character_new_coords);
-	if (check_exit_move(game_data, character_new_coords) == EXIT_MOVE)
-		return (close_game(game_data));
-	update_and_print_character_position(game_data, character_new_coords);
-	return (VALID_MOVE);
-}
-
-t_move_status	close_game(t_game_data *game_data)
-{
-	ft_printf("You made %d moves.\n", game_data->character_data.moves_counter);
-	mlx_destroy_window(game_data->mlx_data.mlx_ptr, game_data->mlx_data.win_ptr);
-	exit(EXIT_SUCCESS);
-}
-
-int	define_keycode_to_move_function(int keycode)
+static int	define_keycode_to_move_function(int keycode)
 {
 	int	key_function_call;
 
@@ -161,7 +41,7 @@ int	define_keycode_to_move_function(int keycode)
 	return (key_function_call);
 }
 
-int	handle_keypress(int keycode, t_game_data *game_data)
+static int	handle_keypress(int keycode, t_game_data *game_data)
 {
 	key_press_functions	key_press_functions[] = {
 		move_up,
