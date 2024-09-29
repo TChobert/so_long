@@ -31,12 +31,12 @@ t_map_status	map_file_parser(const char *map_file_path,
 		return (EXIT_FAILURE);
 	}
 	if (map_array_lines_controls(game_data) == INVALID_MAP
-			|| launch_flood_fill(*game_data) == INVALID_MAP)
+			|| launch_flood_fill(*game_data) == INVALID_MAP
+			|| map_size_control(game_data) == INVALID_MAP)
 	{
 		close_and_free_routine(map_fd, game_data);
 	 	return (INVALID_MAP);
 	}
-	//ft_free_and_null(game_data->current_map_data.map_array);
 	close(map_fd);
 	return (VALID_MAP);
 }

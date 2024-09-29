@@ -68,6 +68,7 @@ SRCS += errors_displaying.c
 SRCS += flood_fill.c
 SRCS += add_line_data.c
 SRCS += duplicate_map_array.c
+SRCS += map_size_control.c
 
 SRCS += close_and_free_routine.c
 
