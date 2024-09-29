@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 15:26:33 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:14:35 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static	void	destroy_game_images(t_game_data *game_data)
 	if (game_data->images_data.character_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
 							game_data->images_data.character_img.img_ptr);
+	if (game_data->images_data.character_right_img.img_ptr != NULL)
+		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
+							game_data->images_data.character_right_img.img_ptr);
 	if (game_data->images_data.collectible_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
 							game_data->images_data.collectible_img.img_ptr);

@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/25 17:48:13 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:16:01 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	launch_game(t_game_data *game_data)
 {
 	if (init_game(game_data) == EXIT_FAILURE)
 	{
-		//game_exit_routine(game_data);
+		close_game(game_data);
 		return (EXIT_FAILURE);
 	}
 	return (run_game(game_data));
