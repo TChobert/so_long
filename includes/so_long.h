@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/29 18:44:59 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/30 19:05:22 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 // DEFINES //
 
-# define ITEM_STR "01PEC"
+# define ITEM_STR "01PECRG"
 # define WALL '1'
 # define BER_SUFFIX ".ber"
 # define TILE_SIZE 32
@@ -54,7 +54,9 @@ typedef enum	e_items_types
 	WALL_ITEM = '1',
 	PLAYER_ITEM = 'P',
 	COLLECTIBLE_ITEM = 'C',
-	EXIT_ITEM = 'E'
+	EXIT_ITEM = 'E',
+	RED_POTION_ITEM = 'R',
+	GREEN_POTION_ITEM = 'G'
 }				t_items_types;
 
 typedef enum	e_key_codes
@@ -107,6 +109,8 @@ typedef struct	s_character_data
 	unsigned int	character_coord[2];
 	unsigned int	moves_counter;
 	bool			is_right;
+	bool			is_red_potion;
+	bool			is_on_exit;
 }				t_character_data;
 
 typedef struct	s_image_data
@@ -124,6 +128,10 @@ typedef struct	s_images_data
 	t_image_data	exit_img;
 	t_image_data	wall_img;
 	t_image_data	floor_img;
+	t_image_data	red_potion_img;
+	t_image_data	green_potion_img;
+	t_image_data	character_on_exit_right_img;
+	t_image_data	character_on_exit_left_img;
 }				t_images_data;
 
 typedef struct	s_mlx_data
