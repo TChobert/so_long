@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/27 17:21:51 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:20:23 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static int load_image(void *mlx_ptr, t_image_data *image_data, const char *file_
 
 int	load_game_images(t_game_data *game_data)
 {
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.character_img, "./assets/test_hedgehog.xpm") == EXIT_FAILURE)
+	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.character_img, "./assets/character_left.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.character_right_img, "./assets/test_hedgehog_right.xpm") == EXIT_FAILURE)
+	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.character_right_img, "./assets/character_right.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.collectible_img, "./assets/exp_book.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.exit_img, "./assets/exit_test.xpm") == EXIT_FAILURE)
+	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.exit_img, "./assets/exit_stairs.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data->mlx_data.mlx_ptr, &game_data->images_data.wall_img, "./assets/bookshelf_resized.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
