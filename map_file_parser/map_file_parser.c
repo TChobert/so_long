@@ -14,9 +14,8 @@
 
 static t_map_status	map_controls(t_game_data *game_data, t_invalid_map_nature *map_problem_status)
 {
-	if (map_array_lines_controls(game_data) == INVALID_MAP)
+	if (map_array_lines_controls(game_data, map_problem_status) == INVALID_MAP)
 	{
-		*map_problem_status = NOT_CONFORM_MAP;
 		return (INVALID_MAP);
 	}
 	if (launch_flood_fill(*game_data) == INVALID_MAP)

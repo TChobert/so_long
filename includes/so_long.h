@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 15:00:02 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:35:32 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 // DEFINES //
 
-# define ITEM_STR "01PEC"
+# define ITEM_STR "01CEP"
 # define WALL '1'
 # define BER_SUFFIX ".ber"
 # define TILE_SIZE 32
@@ -93,6 +93,7 @@ typedef enum	e_invalid_map_nature
 	NO_PROBLEM,
 	NOT_CONFORM_MAP,
 	NOT_CONFORM_SIZE,
+	DOUBLE_ITEM,
 	NO_PATH
 
 }				t_invalid_map_nature;
@@ -175,7 +176,7 @@ void				display_parsing_errors(t_invalid_map_nature map_problem_status);
 t_map_status		map_file_parser(const char *map_file_path, t_game_data *game_data);
 t_opening_status	check_map_file_type(const char *map_file_path);
 char				**build_map_array(int map_file_fd, t_game_data *game_data);
-t_map_status		map_array_lines_controls(t_game_data *game_data);
+t_map_status		map_array_lines_controls(t_game_data *game_data, t_invalid_map_nature *map_problem_status);
 t_map_line_status	check_first_line(const char *first_line,
 						t_game_data *game_data);
 t_map_line_status	check_last_line(const char *last_line, t_game_data *game_data);
