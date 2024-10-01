@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/30 19:05:22 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:22:31 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct	s_image_data
 
 typedef struct	s_images_data
 {
+	bool			is_images_loaded;
 	t_image_data	character_img;
 	t_image_data	character_right_img;
 	t_image_data	collectible_img;

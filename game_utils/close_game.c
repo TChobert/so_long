@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/29 18:14:35 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:30:40 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 static void		display_end_message(t_game_data *game_data)
 {
-	if (game_data->map_data.items_values.collectibles_number >= 0
+	if (game_data->images_data.is_images_loaded != false)
+	{
+		if (game_data->map_data.items_values.collectibles_number >= 0
 			&& game_data->map_data.items_values.exit_number > 0)
-	{
-		ft_printf("You made %d moves. See you !\n",
-					game_data->character_data.moves_counter);
-	}
-	else if (game_data->map_data.items_values.collectibles_number == 0
-				&& game_data->map_data.items_values.exit_number == 0)
-	{
-		ft_printf("You made %d moves. Well done !\n",
-					game_data->character_data.moves_counter);
+		{
+			ft_printf("You made %d moves. See you !\n",
+						game_data->character_data.moves_counter);
+		}
+		else if (game_data->map_data.items_values.collectibles_number == 0
+					&& game_data->map_data.items_values.exit_number == 0)
+		{
+			ft_printf("You made %d moves. Well done !\n",
+						game_data->character_data.moves_counter);
+		}
 	}
 }
 
@@ -52,6 +55,7 @@ static	void	destroy_game_images(t_game_data *game_data)
 
 t_move_status	close_game(t_game_data *game_data)
 {
+	const bool	is_images_loaded = game_data->images_data.is_images_loaded;
 	display_end_message(game_data);
 	destroy_game_images(game_data);
 	mlx_destroy_window(game_data->mlx_data.mlx_ptr,
@@ -62,5 +66,7 @@ t_move_status	close_game(t_game_data *game_data)
 		free(game_data->mlx_data.mlx_ptr);
 	}
 	ft_free_and_null(game_data->map_data.map_array);
+	if (is_images_loaded == false)
+		exit(EXIT_FAILURE);
 	exit(EXIT_SUCCESS);
 }
