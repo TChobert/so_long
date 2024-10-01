@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 13:27:34 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:33:38 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	load_character_images(t_game_data *game_data)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.character_on_exit_right_img, "./assets/exit_stairs_right.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data, &game_data->images_data.character_on_exit_left_img, "./assets/exit_stairs_with_characterRRR.xpm") == EXIT_FAILURE)
+	if (load_image(game_data, &game_data->images_data.character_on_exit_left_img, "./assets/exit_stairs_with_character.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

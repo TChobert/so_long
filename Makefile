@@ -52,7 +52,7 @@ endif
 
 SRCS_DIR += map_file_parser
 SRCS_DIR += game
-SRCS_DIR += utils
+SRCS_DIR += game_utils
 
 # map parsing #
 
