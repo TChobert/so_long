@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 15:02:12 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:57:54 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ static int	handle_keypress(int keycode, t_game_data *game_data)
 // {
 
 // }
+static int	cross_click(t_game_data *game_data)
+{
+	close_game(game_data);
+	return (EXIT_SUCCESS);
+}
 
 int	run_game(t_game_data *game_data)
 {
@@ -101,6 +106,7 @@ int	run_game(t_game_data *game_data)
 		return (EXIT_FAILURE);
 	mlx_key_hook(game_data->mlx_data.win_ptr, handle_keypress, game_data);
 	//mlx_mouse_hook(game_data->mlx_data.win_ptr, handle_mouse_click, game_data);
+	mlx_hook(game_data->mlx_data.win_ptr, DestroyNotify, NoEventMask,cross_click, game_data);
 	mlx_loop(game_data->mlx_data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

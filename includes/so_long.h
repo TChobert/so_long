@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 15:35:32 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:54:19 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <errno.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 # include "mlx.h"
 # include "libft.h"
