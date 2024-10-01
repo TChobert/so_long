@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:26:13 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 18:43:28 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:20:32 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_map_status	launch_flood_fill(t_game_data game_data)
 	if (duplicated_map == NULL)
 	{
 		return (INVALID_MAP);
-		//perror();
+		ft_dprintf(STDERR_FILENO, "Error\nFailed to duplicate map array.\n");
 	}
 	get_character_position(duplicated_map, character_coords);
 	if (flood_fill(&game_data, duplicated_map, character_coords[0],

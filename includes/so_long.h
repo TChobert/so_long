@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 13:22:31 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:00:02 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 // DEFINES //
 
-# define ITEM_STR "01PECRG"
+# define ITEM_STR "01PEC"
 # define WALL '1'
 # define BER_SUFFIX ".ber"
 # define TILE_SIZE 32
@@ -55,8 +55,8 @@ typedef enum	e_items_types
 	PLAYER_ITEM = 'P',
 	COLLECTIBLE_ITEM = 'C',
 	EXIT_ITEM = 'E',
-	RED_POTION_ITEM = 'R',
-	GREEN_POTION_ITEM = 'G'
+	//RED_POTION_ITEM = 'R',
+	//GREEN_POTION_ITEM = 'G'
 }				t_items_types;
 
 typedef enum	e_key_codes
@@ -88,6 +88,15 @@ typedef enum	e_map_status
 	VALID_MAP
 }				t_map_status;
 
+typedef enum	e_invalid_map_nature
+{
+	NO_PROBLEM,
+	NOT_CONFORM_MAP,
+	NOT_CONFORM_SIZE,
+	NO_PATH
+
+}				t_invalid_map_nature;
+
 typedef struct	s_items_values
 {
 	unsigned int	collectibles_number;
@@ -97,11 +106,10 @@ typedef struct	s_items_values
 
 typedef struct	s_map_data
 {
-	char			**map_array;
-	t_items_values	items_values;
-	size_t			map_rows_number;
-	size_t			map_columns_number;
-
+	char					**map_array;
+	t_items_values			items_values;
+	size_t					map_rows_number;
+	size_t					map_columns_number;
 }				t_map_data;
 
 typedef struct	s_character_data
@@ -163,6 +171,7 @@ typedef t_move_status	(*key_press_functions)(t_game_data *);
 
 t_opening_status	open_map_file(const char *map_file_path, int *map_fd);
 void				display_opening_errors(const char *map_file_path);
+void				display_parsing_errors(t_invalid_map_nature map_problem_status);
 t_map_status		map_file_parser(const char *map_file_path, t_game_data *game_data);
 t_opening_status	check_map_file_type(const char *map_file_path);
 char				**build_map_array(int map_file_fd, t_game_data *game_data);
