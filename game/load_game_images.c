@@ -6,18 +6,11 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 16:14:07 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:45:31 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// if (load_image(game_data, &game_data->images_data.red_potion_img,
-			//"./assets/red_potion.xpm") == EXIT_FAILURE)
-	// 	return (EXIT_FAILURE);
-	// if (load_image(game_data, &game_data->images_data.green_potion_img,
-			//"./assets/green_potion.xpm") == EXIT_FAILURE)
-	//	return (EXIT_FAILURE);
 
 static int	check_image_load(t_game_data *game_data, t_image_data *image_data,
 				const char *file_path)
@@ -57,10 +50,8 @@ static int	load_character_images(t_game_data *game_data)
 	return (EXIT_SUCCESS);
 }
 
-int	load_game_images(t_game_data *game_data)
+static int	load_items_images(t_game_data *game_data)
 {
-	if (load_character_images(game_data) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.collectible_img,
 			"./assets/exp_book.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -73,5 +64,15 @@ int	load_game_images(t_game_data *game_data)
 	if (load_image(game_data, &game_data->images_data.floor_img,
 			"./assets/test_wood2.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int	load_game_images(t_game_data *game_data)
+{
+	if (load_character_images(game_data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_items_images(game_data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	game_data->images_data.is_images_loaded = true;
 	return (EXIT_SUCCESS);
 }

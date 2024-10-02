@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 15:05:19 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:42:42 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ typedef enum e_items_types
 	WALL_ITEM = '1',
 	PLAYER_ITEM = 'P',
 	COLLECTIBLE_ITEM = 'C',
-	EXIT_ITEM = 'E',
-	//RED_POTION_ITEM = 'R',
-	//GREEN_POTION_ITEM = 'G'
+	EXIT_ITEM = 'E'
 }			t_items_types;
 
 typedef enum e_key_codes
