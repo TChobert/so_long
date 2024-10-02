@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 14:54:03 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:31:06 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	define_keycode_to_move_function(int keycode)
 
 static int	handle_keypress(int keycode, t_game_data *game_data)
 {
-	const key_press_functions	key_press_functions[] = {
+	const t_key_press_functions	key_press_functions[] = {
 		move_up,
 		move_left,
 		move_right,
