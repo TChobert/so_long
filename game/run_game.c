@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 14:02:01 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:54:03 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ int	run_game(t_game_data *game_data)
 
 	init_map_items(game_data, map_items);
 	if (draw_map_to_window(game_data, map_items) == EXIT_FAILURE)
+	{
+		close_game(game_data);
 		return (EXIT_FAILURE);
+	}
 	mlx_key_hook(game_data->mlx_data.win_ptr, handle_keypress, game_data);
 	mlx_hook(game_data->mlx_data.win_ptr, DestroyNotify, NoEventMask,
 		cross_click, game_data);

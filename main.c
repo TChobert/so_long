@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:38:44 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 13:35:55 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:12:18 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	so_long(char *map)
 		return (EXIT_FAILURE);
 	}
 	if (launch_game(&game_data) == EXIT_FAILURE)
-	 	return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

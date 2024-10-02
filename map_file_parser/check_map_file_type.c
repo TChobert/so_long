@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:41:33 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 14:50:39 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:12:51 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_opening_status	check_map_file_type(const char *map_file_path)
 		|| is_not_hide_ber_file(map_file_path) == false)
 	{
 		ft_dprintf(STDERR_FILENO, "Error\nInvalid file type. Please enter a"
-		" '%s' file to start the game.\n", BER_SUFFIX);
+			" '%s' file to start the game.\n", BER_SUFFIX);
 		return (INVALID_FILE_TYPE);
 	}
 	return (VALID_FILE_TYPE);
