@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 15:06:27 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:05:33 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void		destroy_character_images(t_game_data *game_data)
 	if (game_data->images_data.character_right_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
 							game_data->images_data.character_right_img.img_ptr);
-	if (game_data->images_data.character_on_exit_right_img.img_ptr != NULL)
+	if (game_data->images_data.character_exit_right_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-							game_data->images_data.character_on_exit_right_img.img_ptr);
-	if (game_data->images_data.character_on_exit_left_img.img_ptr != NULL)
+							game_data->images_data.character_exit_right_img.img_ptr);
+	if (game_data->images_data.character_exit_left_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-							game_data->images_data.character_on_exit_left_img.img_ptr);
+							game_data->images_data.character_exit_left_img.img_ptr);
 }
 
 static	void	destroy_game_images(t_game_data *game_data)

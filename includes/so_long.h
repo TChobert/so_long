@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/01 15:54:19 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:54:29 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ typedef struct	s_images_data
 	t_image_data	floor_img;
 	t_image_data	red_potion_img;
 	t_image_data	green_potion_img;
-	t_image_data	character_on_exit_right_img;
-	t_image_data	character_on_exit_left_img;
+	t_image_data	character_exit_right_img;
+	t_image_data	character_exit_left_img;
 }				t_images_data;
 
 typedef struct	s_mlx_data
