@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   map_file_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 12:41:42 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/20 17:15:00tchobert         ###   ########.fr       */
+/*   Created: 2024/10/02 14:47:34 by tchobert          #+#    #+#             */
+/*   Updated: 2024/10/02 14:47:58 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static t_map_status	map_controls(t_game_data *game_data, t_invalid_map_nature *map_problem_status)
+static t_map_status	map_controls(t_game_data *game_data,
+						t_invalid_map_nature *map_problem_status)
 {
 	if (map_array_lines_controls(game_data, map_problem_status) == INVALID_MAP)
 	{

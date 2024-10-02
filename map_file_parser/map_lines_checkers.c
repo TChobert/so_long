@@ -6,13 +6,14 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:00:19 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:37:07 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:48:45 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_map_line_status	check_first_line(const char *first_line, t_game_data *game_data)
+t_map_line_status	check_first_line(const char *first_line,
+						t_game_data *game_data)
 {
 	if (first_line == NULL || is_full_wall(first_line) == false)
 		return (INVALID_LINE);
@@ -20,9 +21,11 @@ t_map_line_status	check_first_line(const char *first_line, t_game_data *game_dat
 	return (VALID_LINE);
 }
 
-t_map_line_status	check_last_line(const char *last_line, t_game_data *game_data)
+t_map_line_status	check_last_line(const char *last_line,
+						t_game_data *game_data)
 {
-	if (last_line == NULL || is_full_wall(last_line) == false || is_correct_size(last_line, game_data) == false)
+	if (last_line == NULL || is_full_wall(last_line) == false
+		|| is_correct_size(last_line, game_data) == false)
 		return (INVALID_LINE);
 	return (VALID_LINE);
 }

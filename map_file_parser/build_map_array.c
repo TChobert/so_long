@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:55:08 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:34:30 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:14:48 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static char	*build_map_line(int map_file_fd, t_game_data *game_data)
 
 	map_line = ft_strdup("");
 	if (map_line == NULL)
-	return (NULL);
+		return (NULL);
 	line = get_next_line(map_file_fd);
-	while (line  != NULL)
+	while (line != NULL)
 	{
 		temp_map_line = map_line;
 		if (ft_asprintf(&map_line, "%s%s", map_line, line) == -1)
@@ -60,7 +60,7 @@ static char	*build_map_line(int map_file_fd, t_game_data *game_data)
 
 char	**build_map_array(int map_file_fd, t_game_data *game_data)
 {
-	char 	**map_array;
+	char	**map_array;
 	char	*map_line;
 
 	map_line = build_map_line(map_file_fd, game_data);

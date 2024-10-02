@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 16:34:14 by tchobert          #+#    #+#             */
-/*   Updated: 2024/09/26 16:35:10 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:16:41 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static size_t	get_map_array_size(char **map_array)
 
 char	**duplicate_map_array(t_game_data game_data)
 {
-	char 	**new_array;
+	char	**new_array;
 	size_t	array_size;
 
 	array_size = get_map_array_size(game_data.map_data.map_array);
