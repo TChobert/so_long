@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/03 20:06:13 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:07:15 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static int	load_character_images(t_game_data *game_data)
 			"./bonus_sources/assets_bonus/character_right.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.hedgehog_exit_right_img,
-			"./bonus_sources/assets_bonus/exit_stairs_right.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/exit_stairs_right.xpm")
+			== EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.hedgehog_exit_left_img,
 			"./bonus_sources/assets_bonus/exit_stairs_with_character.xpm")
@@ -72,7 +73,8 @@ static int	load_items_images(t_game_data *game_data)
 			"./bonus_sources/assets_bonus/exit_stairs.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.wall_img,
-			"./bonus_sources/assets_bonus/bookshelf_resized.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/bookshelf_resized.xpm")
+			== EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.floor_img,
 			"./bonus_sources/assets_bonus/test_wood2.xpm") == EXIT_FAILURE)
