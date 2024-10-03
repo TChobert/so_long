@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/03 13:39:17 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:50:04 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,8 @@ static void	destroy_character_images(t_game_data *game_data)
 			game_data->images_data.character_exit_left_img.img_ptr);
 }
 
-static	void	destroy_game_images(t_game_data *game_data)
+static void	destroy_items_images(t_game_data *game_data)
 {
-	destroy_character_images(game_data);
 	if (game_data->images_data.collectible_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
 			game_data->images_data.collectible_img.img_ptr);
@@ -65,6 +64,12 @@ static	void	destroy_game_images(t_game_data *game_data)
 	if (game_data->images_data.floor_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
 			game_data->images_data.floor_img.img_ptr);
+}
+
+static void	destroy_game_images(t_game_data *game_data)
+{
+	destroy_character_images(game_data);
+	destroy_items_images(game_data);
 }
 
 t_move_status	close_game(t_game_data *game_data)
