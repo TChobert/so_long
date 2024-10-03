@@ -4,6 +4,10 @@
 
 NAME := so_long
 
+## TARGET BONUS ##
+
+BONUS_NAME := so_long_bonus
+
 ## LIBFT ##
 
 LIBFT_DIR := ./libft
@@ -48,11 +52,12 @@ ifeq ($(d), 3)
 	CFLAGS=-Weverything
 endif
 
-## SOURCES ##
+### SOURCES MANDATORY PART ###
 
-SRCS_DIR += map_file_parser
-SRCS_DIR += game
-SRCS_DIR += game_utils
+SRCS_DIR += ./sources
+SRCS_DIR += ./sources/map_file_parser
+SRCS_DIR += ./sources/game
+SRCS_DIR += ./sources/game_utils
 
 # map parsing #
 
@@ -84,7 +89,7 @@ SRCS += moves_checkers.c
 SRCS += update_and_print_character_position.c
 SRCS += character_moves.c
 
-# utils #
+# game utils #
 
 SRCS += get_character_position.c
 SRCS += get_collectible.c
@@ -97,19 +102,87 @@ SRCS += main.c
 
 vpath %.c $(SRCS_DIR)
 
-## HEADERS ##
+## HEADERS MANDATORY ##
 
 HEADERS := so_long.h
 
-INCLUDES_DIR := includes
+INCLUDES_DIR := ./sources/includes
 
 vpath %.h $(INCLUDES_DIR)
 
 ## OBJECTS ##
 
-OBJS_DIR := objs
+OBJS_DIR := ./sources/objs
 
 OBJS := $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
+
+
+
+### SOURCES BONUS PART ###
+
+BONUS_DIR += ./bonus_sources
+BONUS_DIR += ./bonus_sources/game_bonus
+BONUS_DIR += ./bonus_sources/game_utils_bonus
+BONUS_DIR += ./bonus_sources/map_file_parser_bonus
+
+# map parsing #
+
+BONUS += add_line_data_bonus.c
+BONUS += build_map_array_bonus.c
+BONUS += check_map_file_type_bonus.c
+BONUS += close_and_free_routine_bonus.c
+BONUS += duplicate_map_array_bonus.c
+BONUS += errors_displaying_bonus.c
+BONUS += flood_fill_bonus.c
+BONUS += items_counters_bonus.c
+BONUS += map_array_lines_controls_bonus.c
+BONUS += map_file_parser_bonus.c
+BONUS += map_lines_checkers_bonus.c
+BONUS += map_lines_checkers_utils_bonus.c
+BONUS += map_size_control_bonus.c
+BONUS += open_map_file_bonus.c
+
+# game #
+
+BONUS += character_moves_bonus.c
+BONUS += cross_click_bonus.c
+BONUS += draw_image_bonus.c
+BONUS += draw_map_to_window_bonus.c
+BONUS += game_launcher_bonus.c
+BONUS += init_game_bonus.c
+BONUS += load_game_images_bonus.c
+BONUS += moves_checkers_bonus.c
+BONUS += run_game_bonus.c
+BONUS += update_and_print_character_position_bonus.c
+BONUS += update_character_position_bonus.c
+
+# game utils #
+
+BONUS += close_game_bonus.c
+BONUS += display_ascii_arts_bonus.c
+BONUS += get_character_position_bonus.c
+BONUS += get_collectible_bonus.c
+BONUS += place_potions_bonus.c
+
+# main #
+
+BONUS += main_bonus.c
+
+vpath %.c $(BONUS_DIR)
+
+## HEADERS BONUS ##
+
+BONUS_HEADERS := so_long_bonus.h
+
+BONUS_INCLUDES_DIR := ./bonus_sources/includes_bonus
+
+vpath %.h $(BONUS_INCLUDES_DIR)
+
+## OBJECTS BONUS ##
+
+BONUS_OBJS_DIR := ./bonus_sources/bonus_objs
+
+BONUS_OBJS := $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(BONUS))
 
 
 ##### RULES #####
@@ -125,20 +198,30 @@ $(MLX):
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) $(OBJS) $(LIBFT) $(MLX) -o $@
 
+bonus: $(LIBFT) $(MLX) $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) $(BONUS_OBJS) $(LIBFT) $(MLX) -o $(BONUS_NAME)
+
 $(OBJS): $(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) -c $< -o $@
+
+$(BONUS_OBJS): $(BONUS_OBJS_DIR)/%.o: %.c $(BONUS_HEADERS) | $(BONUS_OBJS_DIR)
+	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) -c $< -o $@
 
 $(OBJS_DIR):
 	mkdir $@
 
+$(BONUS_OBJS_DIR):
+	mkdir $@
+
 clean:
-	$(RM) -R $(OBJS_DIR)
+	$(RM) -R $(OBJS_DIR) $(BONUS_OBJS_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(BONUS_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

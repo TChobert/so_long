@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_game_images.c                                 :+:      :+:    :+:   */
+/*   load_game_images_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 16:45:31 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:06:13 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static int	check_image_load(t_game_data *game_data, t_image_data *image_data,
 				const char *file_path)
@@ -35,17 +35,30 @@ static int	load_image(t_game_data *game_data, t_image_data *image_data,
 
 static int	load_character_images(t_game_data *game_data)
 {
-	if (load_image(game_data, &game_data->images_data.character_img,
-			"./assets/character_left.xpm") == EXIT_FAILURE)
+	if (load_image(game_data, &game_data->images_data.hedgehog_left_img,
+			"bonus_sources/assets_bonus/character_left.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data, &game_data->images_data.character_right_img,
-			"./assets/character_right.xpm") == EXIT_FAILURE)
+	if (load_image(game_data, &game_data->images_data.hedgehog_right_img,
+			"./bonus_sources/assets_bonus/character_right.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data, &game_data->images_data.character_exit_right_img,
-			"./assets/exit_stairs_right.xpm") == EXIT_FAILURE)
+	if (load_image(game_data, &game_data->images_data.hedgehog_exit_right_img,
+			"./bonus_sources/assets_bonus/exit_stairs_right.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_image(game_data, &game_data->images_data.character_exit_left_img,
-			"./assets/exit_stairs_with_character.xpm") == EXIT_FAILURE)
+	if (load_image(game_data, &game_data->images_data.hedgehog_exit_left_img,
+			"./bonus_sources/assets_bonus/exit_stairs_with_character.xpm")
+			== EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.bear_right_img,
+			"./bonus_sources/assets_bonus/bear_RIGHT.xpm") == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.bear_left_img,
+			"./bonus_sources/assets_bonus/bear_right.xpm.xpm") == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.bear_exit_right_img,
+			"./bonus_sources/assets_bonus/bear_exit_right.xpm") == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.bear_exit_left_img,
+			"./bonus_sources/assets_bonus/exit_bear_left.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -53,16 +66,25 @@ static int	load_character_images(t_game_data *game_data)
 static int	load_items_images(t_game_data *game_data)
 {
 	if (load_image(game_data, &game_data->images_data.collectible_img,
-			"./assets/exp_book.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/exp_book.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.exit_img,
-			"./assets/exit_stairs.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/exit_stairs.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.wall_img,
-			"./assets/bookshelf_resized.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/bookshelf_resized.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.floor_img,
-			"./assets/test_wood2.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/test_wood2.xpm") == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.red_potion_img,
+			"./bonus_sources/assets_bonus/red_potion.xpm") == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.green_potion_img,
+			"./bonus_sources/assets_bonus/green_potion.xpm") == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_image(game_data, &game_data->images_data.black_potion_img,
+			"./bonus_sources/assets_bonus/black_potion.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
