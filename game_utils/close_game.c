@@ -6,33 +6,11 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 19:34:01 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:39:17 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	display_hedgehog(void)
-{
-	ft_printf("\n");
-	ft_printf("      .|||||||||.          .|||||||||.\n");
-	ft_printf("     |||||||||||||        |||||||||||||\n");
-	ft_printf("    |||||||||||' .\\      /\\. `|||||||||||\n");
-	ft_printf("    `||||||||||_,__o    o__,_||||||||||'\n");
-}
-
-static void	display_book(char *color)
-{
-	ft_printf("%s", color);
-	ft_printf("\n");
-	ft_printf("      __...--~~~~~-._   _.-~~~~~--...__\n");
-	ft_printf("    //               `V'               \\\\ \n");
-	ft_printf("   //                 |                 \\\\ \n");
-	ft_printf("  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\\\ \n");
-	ft_printf(" //__.....----~~~~._\\ | /_.~~~~----.....__\\\\\n");
-	ft_printf("====================\\\\|//====================%s\n\n", KNRM);
-	ft_printf("\n");
-}
 
 static void	display_end_message(t_game_data *game_data)
 {
@@ -43,14 +21,15 @@ static void	display_end_message(t_game_data *game_data)
 		{
 			ft_printf("You made %d moves. See you !\n",
 				game_data->character_data.moves_counter);
+			display_book(KRED);
 		}
 		else if (game_data->map_data.items_values.collectibles_number == 0
 			&& game_data->map_data.items_values.exit_number == 0)
 		{
 			ft_printf("You made %d moves. Well done !\n",
 				game_data->character_data.moves_counter);
-			display_hedgehog();
-			display_book(KMAG);
+			display_hedgehog(KGRN);
+			display_book(KGRN);
 		}
 	}
 }

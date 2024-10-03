@@ -89,6 +89,7 @@ SRCS += character_moves.c
 SRCS += get_character_position.c
 SRCS += get_collectible.c
 SRCS += close_game.c
+SRCS += display_ascii_arts.c
 
 # main #
 

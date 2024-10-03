@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/02 19:34:29 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:39:56 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,5 +244,8 @@ void				get_collectible(t_game_data *game_data,
 void				get_character_position(char **map_array,
 						unsigned int *character_coords);
 t_move_status		close_game(t_game_data *game_data);
+
+void				display_hedgehog(char *color);
+void				display_book(char *color);
 
 #endif
