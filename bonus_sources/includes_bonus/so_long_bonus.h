@@ -6,12 +6,12 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 17:41:10 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:53:10 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 // INCLUDES //
 
@@ -257,13 +257,13 @@ void				update_and_print_character_position(t_game_data *game_data,
 						unsigned int *character_new_coords);
 
 void				print_sanic_position(t_game_data *game_data,
-									unsigned int *old_character_coords);
+						unsigned int *old_character_coords);
 void				print_crab_position(t_game_data *game_data,
-									unsigned int *old_character_coords);
+						unsigned int *old_character_coords);
 void				print_bear_position(t_game_data *game_data,
-										unsigned int *old_character_coords);
+						unsigned int *old_character_coords);
 void				print_hedgehog_position(t_game_data *game_data,
-										unsigned int *old_character_coords);
+						unsigned int *old_character_coords);
 
 int					define_keycode_to_move_function(int keycode);
 int					reverse_define_keycode_to_move_function(int keycode);
@@ -317,6 +317,12 @@ void				place_red_potion_randomly(t_game_data *game_data,
 						unsigned int red_potions_num);
 void				place_green_potion_randomly(t_game_data *game_data,
 						unsigned int green_potions_num);
+
+void				destroy_sanic_images(t_game_data *game_data);
+void				destroy_crab_images(t_game_data *game_data);
+void				destroy_bear_images(t_game_data *game_data);
+void				destroy_hedegehog_images(t_game_data *game_data);
+void				destroy_potions_images(t_game_data *game_data);
 
 void				display_hedgehog(char *color);
 void				display_book(char *color);

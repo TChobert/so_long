@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:43:10 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/03 19:51:04 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:52:15 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,12 @@ static void	display_end_message(t_game_data *game_data)
 	}
 }
 
-static void	destroy_character_images(t_game_data *game_data)
+static void	destroy_characters_images(t_game_data *game_data)
 {
-	if (game_data->images_data.hedgehog_left_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.hedgehog_left_img.img_ptr);
-	if (game_data->images_data.hedgehog_right_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.hedgehog_right_img.img_ptr);
-	if (game_data->images_data.hedgehog_exit_right_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.hedgehog_exit_right_img.img_ptr);
-	if (game_data->images_data.hedgehog_exit_left_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.hedgehog_exit_left_img.img_ptr);
-	if (game_data->images_data.bear_right_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.bear_right_img.img_ptr);
-	if (game_data->images_data.bear_left_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.bear_left_img.img_ptr);
-	if (game_data->images_data.bear_exit_right_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.bear_exit_right_img.img_ptr);
-	if (game_data->images_data.bear_exit_left_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.bear_exit_left_img.img_ptr);
+	destroy_hedegehog_images(game_data);
+	destroy_bear_images(game_data);
+	destroy_crab_images(game_data);
+	destroy_sanic_images(game_data);
 }
 
 static void	destroy_items_images(t_game_data *game_data)
@@ -76,20 +56,12 @@ static void	destroy_items_images(t_game_data *game_data)
 	if (game_data->images_data.floor_img.img_ptr != NULL)
 		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
 			game_data->images_data.floor_img.img_ptr);
-	if (game_data->images_data.red_potion_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.red_potion_img.img_ptr);
-	if (game_data->images_data.green_potion_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.green_potion_img.img_ptr);
-	if (game_data->images_data.black_potion_img.img_ptr != NULL)
-		mlx_destroy_image(game_data->mlx_data.mlx_ptr,
-			game_data->images_data.black_potion_img.img_ptr);
 }
 
 static void	destroy_game_images(t_game_data *game_data)
 {
-	destroy_character_images(game_data);
+	destroy_characters_images(game_data);
+	destroy_potions_images(game_data);
 	destroy_items_images(game_data);
 }
 

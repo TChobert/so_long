@@ -174,6 +174,8 @@ BONUS += get_potions_bonus.c
 BONUS += get_potions_by_color_bonus.c
 BONUS += check_map_free_size_for_potions_bonus.c
 BONUS += place_potions_by_color_bonus.c
+BONUS += destroy_potions_images_bonus.c
+BONUS += destroy_characters_images_bonus.c
 
 # main #
 
