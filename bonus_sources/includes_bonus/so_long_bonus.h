@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 16:45:12 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:41:10 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ int					init_game(t_game_data *game_data);
 int					load_image(t_game_data *game_data, t_image_data *image_data,
 						const char *file_path);
 int					load_game_images(t_game_data *game_data);
+int					load_hedgehog_images(t_game_data *game_data);
 int					run_game(t_game_data *game_data);
 
 int					draw_map_to_window(t_game_data	*game_data,
@@ -296,6 +297,26 @@ void				get_potions(t_game_data *game_data,
 void				place_potions_randomly(t_game_data *game_data);
 t_potions_map_size	check_map_free_size_for_potions(t_game_data *game_data,
 						unsigned int total_potions_asked);
+void				get_blue_potion(t_game_data *game_data,
+						unsigned int *character_new_coords);
+void				get_red_potion(t_game_data *game_data,
+						unsigned int *character_new_coords);
+void				get_green_potion(t_game_data *game_data,
+						unsigned int *character_new_coords);
+void				get_black_potion(t_game_data *game_data,
+						unsigned int *character_new_coords);
+void				get_yellow_potion(t_game_data *game_data,
+						unsigned int *character_new_coords);
+void				place_blue_potions_randomly(t_game_data *game_data,
+						unsigned int blue_potions_num);
+void				place_yellow_potions_randomly(t_game_data *game_data,
+						unsigned int yellow_potions_num);
+void				place_black_potions_randomly(t_game_data *game_data,
+						unsigned int black_potions_num);
+void				place_red_potion_randomly(t_game_data *game_data,
+						unsigned int red_potions_num);
+void				place_green_potion_randomly(t_game_data *game_data,
+						unsigned int green_potions_num);
 
 void				display_hedgehog(char *color);
 void				display_book(char *color);

@@ -161,6 +161,7 @@ BONUS += print_crab_position_bonus.c
 BONUS += print_bear_position_bonus.c
 BONUS += print_hedgehog_position_bonus.c
 BONUS += define_keycode_to_move_functions.c
+BONUS += load_hedgehog_images_bonus.c
 
 # game utils #
 
@@ -170,7 +171,9 @@ BONUS += get_character_position_bonus.c
 BONUS += get_collectible_bonus.c
 BONUS += place_potions_bonus.c
 BONUS += get_potions_bonus.c
+BONUS += get_potions_by_color_bonus.c
 BONUS += check_map_free_size_for_potions_bonus.c
+BONUS += place_potions_by_color_bonus.c
 
 # main #
 
