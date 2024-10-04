@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 16:11:36 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:45:12 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <time.h>
+# include <sys/time.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -249,16 +250,27 @@ int					run_game(t_game_data *game_data);
 int					draw_map_to_window(t_game_data	*game_data,
 						t_map_item *map_items);
 
+void				update_character_position(t_game_data *game_data,
+						unsigned int *character_new_coords);
 void				update_and_print_character_position(t_game_data *game_data,
 						unsigned int *character_new_coords);
+
+void				print_sanic_position(t_game_data *game_data,
+									unsigned int *old_character_coords);
+void				print_crab_position(t_game_data *game_data,
+									unsigned int *old_character_coords);
+void				print_bear_position(t_game_data *game_data,
+										unsigned int *old_character_coords);
+void				print_hedgehog_position(t_game_data *game_data,
+										unsigned int *old_character_coords);
+
+int					define_keycode_to_move_function(int keycode);
+int					reverse_define_keycode_to_move_function(int keycode);
 
 t_move_status		move_up(t_game_data *game_data);
 t_move_status		move_left(t_game_data *game_data);
 t_move_status		move_right(t_game_data *game_data);
 t_move_status		move_down(t_game_data *game_data);
-
-void				update_character_position(t_game_data *game_data,
-						unsigned int *character_new_coords);
 
 t_move_status		close_game(t_game_data *game_data);
 

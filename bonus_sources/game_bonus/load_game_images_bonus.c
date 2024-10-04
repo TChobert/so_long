@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:24 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 16:12:40 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:54:28 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ static int	load_hedgehog_images(t_game_data *game_data)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.hedgehog_exit_right_img,
 			"./bonus_sources/assets_bonus/exit_stairs_right.xpm")
-			== EXIT_FAILURE)
+		== EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.hedgehog_exit_left_img,
 			"./bonus_sources/assets_bonus/exit_stairs_with_character.xpm")
-			== EXIT_FAILURE)
+		== EXIT_FAILURE)
 		return (EXIT_FAILURE);
-
 	return (EXIT_SUCCESS);
 }
 
@@ -54,6 +53,7 @@ static int	load_bear_and_crab_images(t_game_data *game_data)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+
 static int	load_sanic_images(t_game_data *game_data)
 {
 	if (load_image(game_data, &game_data->images_data.sanic_right_img,
@@ -63,7 +63,8 @@ static int	load_sanic_images(t_game_data *game_data)
 			"./bonus_sources/assets_bonus/sanic_left.xpm") == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.sanic_exit_right_img,
-			"./bonus_sources/assets_bonus/Sanic_exit_right.xpm") == EXIT_FAILURE)
+			"./bonus_sources/assets_bonus/Sanic_exit_right.xpm")
+		== EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.sanic_exit_left_img,
 			"./bonus_sources/assets_bonus/sanic_exit_left.xpm") == EXIT_FAILURE)
@@ -101,7 +102,7 @@ static int	load_items_images(t_game_data *game_data)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.wall_img,
 			"./bonus_sources/assets_bonus/bookshelf_resized.xpm")
-			== EXIT_FAILURE)
+		== EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_image(game_data, &game_data->images_data.floor_img,
 			"./bonus_sources/assets_bonus/test_wood2.xpm") == EXIT_FAILURE)

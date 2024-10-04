@@ -156,6 +156,11 @@ BONUS += moves_checkers_bonus.c
 BONUS += run_game_bonus.c
 BONUS += update_and_print_character_position_bonus.c
 BONUS += update_character_position_bonus.c
+BONUS += print_sanic_position_bonus.c
+BONUS += print_crab_position_bonus.c
+BONUS += print_bear_position_bonus.c
+BONUS += print_hedgehog_position_bonus.c
+BONUS += define_keycode_to_move_functions.c
 
 # game utils #
 

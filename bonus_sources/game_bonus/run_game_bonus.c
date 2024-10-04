@@ -6,12 +6,11 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 15:09:11 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:52:16 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-#include <sys/time.h>
 
 static void	init_map_items(t_game_data *game_data, t_map_item *map_items)
 {
@@ -38,42 +37,6 @@ static void	init_map_items(t_game_data *game_data, t_map_item *map_items)
 	map_items[10] = (t_map_item){0, NULL};
 }
 
-static int	define_keycode_to_move_function(int keycode)
-{
-	int	key_function_call;
-
-	key_function_call = -1;
-	if (keycode == W_KEY)
-		key_function_call = KEY_W_INDEX;
-	else if (keycode == A_KEY)
-		key_function_call = KEY_A_INDEX;
-	else if (keycode == S_KEY)
-		key_function_call = KEY_S_INDEX;
-	else if (keycode == D_KEY)
-		key_function_call = KEY_D_INDEX;
-	else if (keycode == ESC_KEY)
-		key_function_call = KEY_ESC_INDEX;
-	return (key_function_call);
-}
-
-static int	reverse_define_keycode_to_move_function(int keycode)
-{
-	int	key_function_call;
-
-	key_function_call = -1;
-	if (keycode == W_KEY)
-		key_function_call = KEY_D_INDEX;
-	else if (keycode == A_KEY)
-		key_function_call = KEY_S_INDEX;
-	else if (keycode == S_KEY)
-		key_function_call = KEY_A_INDEX;
-	else if (keycode == D_KEY)
-		key_function_call = KEY_W_INDEX;
-	else if (keycode == ESC_KEY)
-		key_function_call = KEY_ESC_INDEX;
-	return (key_function_call);
-}
-
 static int	handle_keypress(int keycode, t_game_data *game_data)
 {
 	const t_key_press_functions	key_press_functions[] = {
@@ -97,25 +60,31 @@ static int	handle_keypress(int keycode, t_game_data *game_data)
 	}
 	return (EXIT_SUCCESS);
 }
-long get_current_time_in_ms() {
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+
+static long	get_current_time_in_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-int handle_keypress_with_delay(int keycode, t_game_data *game_data) {
-    static long last_press_time = 0;
-    long current_time = get_current_time_in_ms();
+static int	handle_keypress_with_delay(int keycode, t_game_data *game_data)
+{
+	static long	last_press_time = 0;
+	long		current_time;
 
-    if (game_data->character_data.is_blue_potion == false) {
-        if (current_time - last_press_time < 150) { // 200ms delay
-            return (EXIT_SUCCESS);
-        }
-    }
-
-    handle_keypress(keycode, game_data);
-    last_press_time = current_time;
-    return (EXIT_SUCCESS);
+	current_time = get_current_time_in_ms();
+	if (game_data->character_data.is_blue_potion == false)
+	{
+		if (current_time - last_press_time < 150)
+		{
+			return (EXIT_SUCCESS);
+		}
+	}
+	handle_keypress(keycode, game_data);
+	last_press_time = current_time;
+	return (EXIT_SUCCESS);
 }
 
 int	run_game(t_game_data *game_data)
@@ -131,7 +100,8 @@ int	run_game(t_game_data *game_data)
 	}
 	mlx_hook(game_data->mlx_data.win_ptr, DestroyNotify, NoEventMask,
 		cross_click, game_data);
-	mlx_hook(game_data->mlx_data.win_ptr, KeyPress, KeyPressMask, handle_keypress_with_delay, game_data);
+	mlx_hook(game_data->mlx_data.win_ptr, KeyPress, KeyPressMask,
+		handle_keypress_with_delay, game_data);
 	mlx_loop(game_data->mlx_data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
