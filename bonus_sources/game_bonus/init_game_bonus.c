@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:35:55 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/03 19:50:22 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:14:42 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	init_game_basic_data(t_game_data *game_data)
 		game_data->character_data.character_coord);
 	game_data->character_data.is_red_potion = false;
 	game_data->character_data.is_black_potion = false;
+	game_data->character_data.is_yellow_potion = false;
 	game_data->character_data.is_on_exit = false;
 }
 

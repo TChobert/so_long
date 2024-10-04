@@ -6,11 +6,12 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:10:09 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/03 19:50:39 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:09:11 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+#include <sys/time.h>
 
 static void	init_map_items(t_game_data *game_data, t_map_item *map_items)
 {
@@ -30,7 +31,11 @@ static void	init_map_items(t_game_data *game_data, t_map_item *map_items)
 	{GREEN_POTION_ITEM, &game_data->images_data.green_potion_img};
 	map_items[7] = (t_map_item)
 	{BLACK_POTION_ITEM, &game_data->images_data.black_potion_img};
-	map_items[8] = (t_map_item){0, NULL};
+	map_items[8] = (t_map_item)
+	{YELLOW_POTION_ITEM, &game_data->images_data.yellow_potion_img};
+	map_items[9] = (t_map_item)
+	{BLUE_POTION_ITEM, &game_data->images_data.blue_potion_img};
+	map_items[10] = (t_map_item){0, NULL};
 }
 
 static int	define_keycode_to_move_function(int keycode)
@@ -92,21 +97,41 @@ static int	handle_keypress(int keycode, t_game_data *game_data)
 	}
 	return (EXIT_SUCCESS);
 }
+long get_current_time_in_ms() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+}
+
+int handle_keypress_with_delay(int keycode, t_game_data *game_data) {
+    static long last_press_time = 0;
+    long current_time = get_current_time_in_ms();
+
+    if (game_data->character_data.is_blue_potion == false) {
+        if (current_time - last_press_time < 150) { // 200ms delay
+            return (EXIT_SUCCESS);
+        }
+    }
+
+    handle_keypress(keycode, game_data);
+    last_press_time = current_time;
+    return (EXIT_SUCCESS);
+}
 
 int	run_game(t_game_data *game_data)
 {
-	t_map_item	map_items[9];
+	t_map_item	map_items[11];
 
 	init_map_items(game_data, map_items);
-	place_potions_randomly(game_data, 1, 1, 1);
+	place_potions_randomly(game_data);
 	if (draw_map_to_window(game_data, map_items) == EXIT_FAILURE)
 	{
 		close_game(game_data);
 		return (EXIT_FAILURE);
 	}
-	mlx_key_hook(game_data->mlx_data.win_ptr, handle_keypress, game_data);
 	mlx_hook(game_data->mlx_data.win_ptr, DestroyNotify, NoEventMask,
 		cross_click, game_data);
+	mlx_hook(game_data->mlx_data.win_ptr, KeyPress, KeyPressMask, handle_keypress_with_delay, game_data);
 	mlx_loop(game_data->mlx_data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

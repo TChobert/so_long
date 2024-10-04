@@ -150,6 +150,7 @@ BONUS += draw_image_bonus.c
 BONUS += draw_map_to_window_bonus.c
 BONUS += game_launcher_bonus.c
 BONUS += init_game_bonus.c
+BONUS += load_image_bonus.c
 BONUS += load_game_images_bonus.c
 BONUS += moves_checkers_bonus.c
 BONUS += run_game_bonus.c
@@ -163,6 +164,8 @@ BONUS += display_ascii_arts_bonus.c
 BONUS += get_character_position_bonus.c
 BONUS += get_collectible_bonus.c
 BONUS += place_potions_bonus.c
+BONUS += get_potions_bonus.c
+BONUS += check_map_free_size_for_potions_bonus.c
 
 # main #
 

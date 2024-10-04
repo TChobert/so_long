@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:27:28 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/03 18:00:44 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:11:36 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ typedef enum e_items_types
 	EXIT_ITEM = 'E',
 	RED_POTION_ITEM = 'R',
 	GREEN_POTION_ITEM = 'G',
-	BLACK_POTION_ITEM = 'B'
+	BLACK_POTION_ITEM = 'B',
+	YELLOW_POTION_ITEM = 'Y',
+	BLUE_POTION_ITEM = 'Z'
 }			t_items_types;
 
 typedef enum e_potions_map_size
@@ -137,6 +139,8 @@ typedef struct s_character_data
 	bool			is_right;
 	bool			is_red_potion;
 	bool			is_black_potion;
+	bool			is_yellow_potion;
+	bool			is_blue_potion;
 	bool			is_on_exit;
 }			t_character_data;
 
@@ -154,6 +158,12 @@ typedef struct s_images_data
 	t_image_data	hedgehog_right_img;
 	t_image_data	bear_right_img;
 	t_image_data	bear_left_img;
+	t_image_data	sanic_right_img;
+	t_image_data	sanic_left_img;
+	t_image_data	sanic_exit_left_img;
+	t_image_data	sanic_exit_right_img;
+	t_image_data	crab_img;
+	t_image_data	crab_exit_img;
 	t_image_data	collectible_img;
 	t_image_data	exit_img;
 	t_image_data	wall_img;
@@ -161,6 +171,8 @@ typedef struct s_images_data
 	t_image_data	red_potion_img;
 	t_image_data	green_potion_img;
 	t_image_data	black_potion_img;
+	t_image_data	blue_potion_img;
+	t_image_data	yellow_potion_img;
 	t_image_data	hedgehog_exit_right_img;
 	t_image_data	hedgehog_exit_left_img;
 	t_image_data	bear_exit_right_img;
@@ -229,6 +241,8 @@ t_map_status		map_size_control(t_game_data *game_data);
 
 int					launch_game(t_game_data *game_data);
 int					init_game(t_game_data *game_data);
+int					load_image(t_game_data *game_data, t_image_data *image_data,
+						const char *file_path);
 int					load_game_images(t_game_data *game_data);
 int					run_game(t_game_data *game_data);
 
@@ -265,10 +279,11 @@ void				get_collectible(t_game_data *game_data,
 void				get_character_position(char **map_array,
 						unsigned int *character_coords);
 t_move_status		close_game(t_game_data *game_data);
-void				place_potions_randomly(t_game_data *game_data,
-						unsigned int red_potions_num,
-						unsigned int green_potions_num,
-						unsigned int black_potions_num);
+void				get_potions(t_game_data *game_data,
+						unsigned int *character_new_coords);
+void				place_potions_randomly(t_game_data *game_data);
+t_potions_map_size	check_map_free_size_for_potions(t_game_data *game_data,
+						unsigned int total_potions_asked);
 
 void				display_hedgehog(char *color);
 void				display_book(char *color);
