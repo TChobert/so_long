@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 17:37:07 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 17:41:24 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:42:49 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	get_blue_potion(t_game_data *game_data,
 		game_data->character_data.is_black_potion = false;
 		game_data->character_data.is_yellow_potion = false;
 		game_data->character_data.is_blue_potion = true;
-		printf("Blue potion\n");
 		game_data->map_data.map_array[character_new_coords[0]]
 		[character_new_coords[1]] = FLOOR_ITEM;
 	}

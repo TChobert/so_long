@@ -1,3 +1,9 @@
+## COLORS ##
+
+GREEN =\033[0;32m
+YELLOW =\033[0;33m
+RESET =\033[0m
+
 ##### VARIABLES #####
 
 ## TARGET ##
@@ -203,42 +209,49 @@ BONUS_OBJS := $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(BONUS))
 all : $(LIBFT) $(MLX) $(NAME)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) >/dev/null
+	@echo "$(GREEN)Libft compiled !$(RESET)"
 
 $(MLX):
-	$(MAKE) -C $(MLX_DIR)
+	@$(MAKE) -C $(MLX_DIR) >/dev/null
+	@echo "$(GREEN)Minilibx compiled !$(RESET)"
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) $(OBJS) $(LIBFT) $(MLX) -o $@
+	@$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) $(OBJS) $(LIBFT) $(MLX) -o $@
+	@echo "$(GREEN)so_long compiled !$(RESET)"
 
 bonus: $(LIBFT) $(MLX) $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJS)
-	$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) $(BONUS_OBJS) $(LIBFT) $(MLX) -o $@
+	@$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) $(BONUS_OBJS) $(LIBFT) $(MLX) -o $@
+	@echo "$(GREEN)so_long_bonus compiled !$(RESET)"
+	@echo "$(YELLOW)ADVICE: BEWARE OF YELLOW POTIONS !$(RESET)"
 
 # bonus: $(LIBFT) $(MLX) $(BONUS_OBJS)
 # 	$(CC) $(CFLAGS) $(MLX_LINKS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) $(BONUS_OBJS) $(LIBFT) $(MLX) -o $(BONUS_NAME)
 
 $(OBJS): $(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(BONUS_OBJS): $(BONUS_OBJS_DIR)/%.o: %.c $(BONUS_HEADERS) | $(BONUS_OBJS_DIR)
-	$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_INCLUDES_DIR) -I$(MLX_INCLUDES_DIR) -I$(BONUS_INCLUDES_DIR) -c $< -o $@
 
 $(OBJS_DIR):
-	mkdir $@
+	@mkdir $@
 
 $(BONUS_OBJS_DIR):
-	mkdir $@
+	@mkdir $@
 
 clean:
-	$(RM) -R $(OBJS_DIR) $(BONUS_OBJS_DIR)
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(MLX_DIR) clean
+	@$(RM) -R $(OBJS_DIR) $(BONUS_OBJS_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) fclean >/dev/null
+	@$(MAKE) -C $(MLX_DIR) clean >/dev/null
+	@echo "$(GREEN)Clean completed !$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) $(BONUS_NAME)
+	@$(RM) $(NAME)
+	@$(RM) $(BONUS_NAME)
+	@echo "$(GREEN)Full clean completed !$(RESET)"
 
 re: fclean all
 

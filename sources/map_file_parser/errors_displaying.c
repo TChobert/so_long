@@ -6,7 +6,7 @@
 /*   By: tchobert <tchobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:53:51 by tchobert          #+#    #+#             */
-/*   Updated: 2024/10/04 18:02:18 by tchobert         ###   ########.fr       */
+/*   Updated: 2024/10/06 12:47:53 by tchobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	display_parsing_errors(t_invalid_map_nature map_problem_status)
 			" access to the exit and all collectibles.\n");
 	else if (map_problem_status == NOT_CONFORM_SIZE)
 		ft_dprintf(STDERR_FILENO, "Error\nYour map size is incorrect."
-			"The map must have dimensions of 50 by 28 tiles maximum.\n");
+			"The map must have dimensions of 28 by 50 tiles maximum.\n");
 	else if (map_problem_status == DOUBLE_ITEM)
 		ft_dprintf(STDERR_FILENO, "Error\nYour map must contain only"
-			"one character and one exit.\n");
+			" one character and one exit.\n");
 	print_example();
 }
